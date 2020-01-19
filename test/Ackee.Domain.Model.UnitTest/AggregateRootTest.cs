@@ -16,6 +16,4 @@ namespace Ackee.Domain.Model.UnitTest
         }
         
     }
-
-    
 }
