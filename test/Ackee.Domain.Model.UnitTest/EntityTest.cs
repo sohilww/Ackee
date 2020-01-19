@@ -42,5 +42,19 @@ namespace Ackee.Domain.Model.UnitTest
 
             firstEntity.Should().Be(secondEntity);
         }
+
+        [Fact]
+        public void when_entity_is_null_equal()
+        {
+            _entity.Should().NotBe(null);
+        }
+        [Fact]
+        public void entity_with_different_id_is_not_equal()
+        {
+            var firstEntity = new BookEntity(10);
+            var secondEntity = new BookEntity(11);
+
+            firstEntity.Should().NotBe(secondEntity);
+        }
     }
 }
