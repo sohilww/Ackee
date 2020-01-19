@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.Domain.Model.UnitTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.Domain.Model.Utility", "test\Ackee.Domain.Model.Utility\Ackee.Domain.Model.Utility.csproj", "{73E91645-A5BB-477F-AF21-FF334DA2576B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.Core", "src\Ackee.Core\Ackee.Core.csproj", "{9A7CD471-50E5-48E6-976D-3D5A70F3D704}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{73E91645-A5BB-477F-AF21-FF334DA2576B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73E91645-A5BB-477F-AF21-FF334DA2576B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73E91645-A5BB-477F-AF21-FF334DA2576B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A7CD471-50E5-48E6-976D-3D5A70F3D704}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A7CD471-50E5-48E6-976D-3D5A70F3D704}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A7CD471-50E5-48E6-976D-3D5A70F3D704}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A7CD471-50E5-48E6-976D-3D5A70F3D704}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{2D320929-C5D3-4C6E-9DC6-E9EA668A7493} = {BEFD1F79-4EDF-4694-91E6-CE3B9256E827}
 		{A94D8FDE-8C2B-4E81-8C68-6D8AF342A40C} = {69DF03DC-1388-47E5-8C57-8337BED8DE47}
 		{73E91645-A5BB-477F-AF21-FF334DA2576B} = {69DF03DC-1388-47E5-8C57-8337BED8DE47}
+		{9A7CD471-50E5-48E6-976D-3D5A70F3D704} = {BEFD1F79-4EDF-4694-91E6-CE3B9256E827}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C944CE8C-12A1-4ED1-89B5-65F6842EB3BC}
