@@ -3,3 +3,9 @@
 ################################################################################
 
 /Ackee/Ackee.v3.ncrunchsolution.user
+*.cache
+*.json
+*.props
+*.targets
+/src/Ackee.Domain.Model/obj/Debug/netstandard2.0
+/Ackee/.vs/Ackee/v16/Server/sqlite3
