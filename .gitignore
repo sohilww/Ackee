@@ -162,3 +162,4 @@ NDependOut
 *.ndproj
 /BuildScript/tools/*
 !/BuildScript/tools/packages.config
+*.nupkg

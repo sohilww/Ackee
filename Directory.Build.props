@@ -1,0 +1,10 @@
+﻿<Project>
+  <PropertyGroup>
+    <Version>1.0.0</Version>
+    <FileVersion>1.0.0</FileVersion>
+    <Product>Ackee Framework</Product>
+    <Company></Company>
+    <Copyright>Copyright © 2019, Iran - SoheilKarami</Copyright>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+</Project>

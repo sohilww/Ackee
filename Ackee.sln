@@ -15,12 +15,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.Domain.Model.Utility"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.Core", "src\Ackee.Core\Ackee.Core.csproj", "{9A7CD471-50E5-48E6-976D-3D5A70F3D704}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "BuildScript\_build.csproj", "{D4CEFC49-3FB3-4B35-B7A8-928EE82789F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4CEFC49-3FB3-4B35-B7A8-928EE82789F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4CEFC49-3FB3-4B35-B7A8-928EE82789F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D320929-C5D3-4C6E-9DC6-E9EA668A7493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2D320929-C5D3-4C6E-9DC6-E9EA668A7493}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D320929-C5D3-4C6E-9DC6-E9EA668A7493}.Release|Any CPU.ActiveCfg = Release|Any CPU
