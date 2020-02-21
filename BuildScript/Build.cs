@@ -116,7 +116,8 @@ class Build : NukeBuild
             Logger.Log(LogLevel.Warning,$"temp path : {TemporaryDirectory}");
             DotNetPack(a =>
                 a.SetProject(Solution)
-                    .SetOutputDirectory(TemporaryDirectory)
+                    .SetConfiguration(Configuration)
+                    .SetOutputDirectory(ArtifactsPath)
                     .SetAuthors("Soheil Karami")
                     .SetNoRestore(true)
                     .SetNoBuild(true));
