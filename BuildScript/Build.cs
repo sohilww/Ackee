@@ -112,8 +112,6 @@ class Build : NukeBuild
         .Produces(ArtifactsPath)
         .Executes(() =>
         {
-            Logger.Log(LogLevel.Warning,ArtifactsPath);
-            Logger.Log(LogLevel.Warning,$"temp path : {TemporaryDirectory}");
             DotNetPack(a =>
                 a.SetProject(Solution)
                     .SetConfiguration(Configuration)
@@ -129,11 +127,17 @@ class Build : NukeBuild
         .DependsOn(PackNuget)
         .Executes(() =>
         {
-            Logger.Log(LogLevel.Warning, ArtifactsPath);
-            DotNetNuGetPush(a => a
-                .SetTargetPath(ArtifactsPath)
-                .SetApiKey(ApiKey)
-                .SetSource(NugetSourceURL));
+            var packages= Directory.EnumerateFiles(ArtifactsPath, "*.nupkg");
+
+            foreach (var package in packages)
+            {
+                Logger.Log(LogLevel.Warning, package);
+                DotNetNuGetPush(a => a
+                    .SetTargetPath(package)
+                    .SetApiKey(ApiKey)
+                    .SetSource(NugetSourceURL));
+            }
+         
         });
 
 }
