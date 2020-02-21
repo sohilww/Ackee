@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Nuke.Common;
+using Nuke.Common.CI;
 using Nuke.Common.Execution;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
@@ -34,7 +35,7 @@ class Build : NukeBuild
     [Solution] readonly Solution Solution;
 
     [Parameter] readonly long BuildNumber = 0;
-    [Parameter] string ArtifactsPath = RootDirectory + "/artifacts/";
+    [Parameter] string ArtifactsPath = RootDirectory + @"\artifacts\";
     [Parameter] string ApiKey= "oy2fcudljgbqv6u7ao4q44jugu7wuk5exjhwjgrcfxm63m";
     [Parameter] string NugetSourceURL= "https://www.nuget.org";
 
@@ -78,6 +79,7 @@ class Build : NukeBuild
 
     Target Compile => _ => _
         .DependsOn(UpdateVersion)
+        .Produces(ArtifactsPath)
         .Executes(() =>
         {
             DotNetBuild(a =>
@@ -107,6 +109,7 @@ class Build : NukeBuild
     Target PackNuget => _ => _
         .Requires(()=>!string.IsNullOrEmpty(ArtifactsPath))
         .DependsOn(RunTests)
+        .Produces(ArtifactsPath)
         .Executes(() =>
         {
             Logger.Log(LogLevel.Warning,ArtifactsPath);
