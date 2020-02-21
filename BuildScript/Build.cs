@@ -105,7 +105,7 @@ class Build : NukeBuild
     
 
     Target PackNuget => _ => _
-        .Requires(()=>string.IsNullOrEmpty(ArtifactsPath))
+        .Requires(()=>!string.IsNullOrEmpty(ArtifactsPath))
         .DependsOn(RunTests)
         .Executes(() =>
         {
@@ -120,8 +120,8 @@ class Build : NukeBuild
         });
 
     Target PushNuget => _ => _
-        .Requires(()=>string.IsNullOrEmpty(ApiKey))
-        .Requires(()=>string.IsNullOrEmpty(NugetSourceURL))
+        .Requires(()=>!string.IsNullOrEmpty(ApiKey))
+        .Requires(()=>!string.IsNullOrEmpty(NugetSourceURL))
         .DependsOn(PackNuget)
         .Executes(() =>
         {
