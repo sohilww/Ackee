@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Ackee.Domain.Model\Ackee.Domain.Model.csproj" />
-    <ProjectReference Include="..\Ackee.Domain.Model.Utility\Ackee.Domain.Model.Utility.csproj" />
+    <ProjectReference Include="..\Ackee.Domain.Model.Utility\Ackee.Domain.Model.TestUtility.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,11 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{69DF03DC-1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.Domain.Model", "src\Ackee.Domain.Model\Ackee.Domain.Model.csproj", "{2D320929-C5D3-4C6E-9DC6-E9EA668A7493}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.Domain.Model.UnitTest", "test\Ackee.Domain.Model.UnitTest\Ackee.Domain.Model.UnitTest.csproj", "{A94D8FDE-8C2B-4E81-8C68-6D8AF342A40C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.Domain.Model.UnitTest", "test\Ackee.Domain.Model.UnitTest\Ackee.Domain.Model.UnitTest.csproj", "{A94D8FDE-8C2B-4E81-8C68-6D8AF342A40C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.Domain.Model.Utility", "test\Ackee.Domain.Model.Utility\Ackee.Domain.Model.Utility.csproj", "{73E91645-A5BB-477F-AF21-FF334DA2576B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.Domain.Model.TestUtility", "test\Ackee.Domain.Model.Utility\Ackee.Domain.Model.TestUtility.csproj", "{73E91645-A5BB-477F-AF21-FF334DA2576B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.Core", "src\Ackee.Core\Ackee.Core.csproj", "{9A7CD471-50E5-48E6-976D-3D5A70F3D704}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.Core", "src\Ackee.Core\Ackee.Core.csproj", "{9A7CD471-50E5-48E6-976D-3D5A70F3D704}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "BuildScript\_build.csproj", "{D4CEFC49-3FB3-4B35-B7A8-928EE82789F0}"
 EndProject
@@ -23,8 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D4CEFC49-3FB3-4B35-B7A8-928EE82789F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D4CEFC49-3FB3-4B35-B7A8-928EE82789F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D320929-C5D3-4C6E-9DC6-E9EA668A7493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2D320929-C5D3-4C6E-9DC6-E9EA668A7493}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D320929-C5D3-4C6E-9DC6-E9EA668A7493}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,6 +39,8 @@ Global
 		{9A7CD471-50E5-48E6-976D-3D5A70F3D704}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A7CD471-50E5-48E6-976D-3D5A70F3D704}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A7CD471-50E5-48E6-976D-3D5A70F3D704}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4CEFC49-3FB3-4B35-B7A8-928EE82789F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4CEFC49-3FB3-4B35-B7A8-928EE82789F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
