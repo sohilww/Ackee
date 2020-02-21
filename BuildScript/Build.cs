@@ -110,6 +110,7 @@ class Build : NukeBuild
             DotNetPack(a =>
                 a.SetProject(Solution)
                     .SetOutputDirectory(ArtifactsPath)
+                    .SetAuthors("Soheil Karami")
                     .SetNoRestore(true)
                     .SetNoBuild(true));
         });
