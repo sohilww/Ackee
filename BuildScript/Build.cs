@@ -41,6 +41,7 @@ class Build : NukeBuild
     Target Clean => _ => _
         .Executes(() =>
         {
+            Logger.Log(LogLevel.Warning,"Hello World");
             DotNetClean(a =>
                 a.SetProject(Solution)
                     .SetConfiguration(Configuration));
@@ -104,9 +105,12 @@ class Build : NukeBuild
     
 
     Target PackNuget => _ => _
+        .Requires(()=>string.IsNullOrEmpty(ArtifactsPath))
         .DependsOn(RunTests)
         .Executes(() =>
         {
+            Logger.Log(LogLevel.Warning,ArtifactsPath);
+            Logger.Log(LogLevel.Warning,$"temp path : {TemporaryDirectory}");
             DotNetPack(a =>
                 a.SetProject(Solution)
                     .SetOutputDirectory(ArtifactsPath)
@@ -116,9 +120,12 @@ class Build : NukeBuild
         });
 
     Target PushNuget => _ => _
+        .Requires(()=>string.IsNullOrEmpty(ApiKey))
+        .Requires(()=>string.IsNullOrEmpty(NugetSourceURL))
         .DependsOn(PackNuget)
         .Executes(() =>
         {
+            Logger.Log(LogLevel.Warning, ArtifactsPath);
             DotNetNuGetPush(a => a
                 .SetTargetPath(ArtifactsPath)
                 .SetApiKey(ApiKey)
