@@ -1,6 +1,8 @@
-﻿using NSubstitute;
+﻿using System;
+using NSubstitute;
 using System.Threading.Tasks;
 using Ackee.Core;
+using Ackee.Core.Exceptions;
 using FluentAssertions;
 using Xunit;
 
@@ -21,7 +23,17 @@ namespace Ackee.Application.Test
 
             handler.Should().NotBeOfType<TestCommandHandler>();
         }
+
+        [Fact]
+        public void Should_throw_exception_when_ServiceLocator_is_null()
+        {
+            Action action = () => new CommandHandlerFactory(null);
+
+            action.Should().Throw<ArgumentNullAckeeException>();
+        }
+
     }
+    
 
     public class TestCommandHandler : ICommandHandler<TestCommand>
     {
