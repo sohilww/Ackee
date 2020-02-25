@@ -1,6 +1,7 @@
 using System;
 using NSubstitute;
 using System.Threading.Tasks;
+using Ackee.Application.Test.Utility;
 using Ackee.Core.Exceptions;
 using FluentAssertions;
 using Xunit;

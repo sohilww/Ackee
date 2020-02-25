@@ -1,6 +1,6 @@
 ﻿using System;
+using Ackee.Application.Test.Utility;
 using NSubstitute;
-using System.Threading.Tasks;
 using Ackee.Core;
 using Ackee.Core.Exceptions;
 using FluentAssertions;
@@ -32,14 +32,5 @@ namespace Ackee.Application.Test
             action.Should().Throw<ArgumentNullAckeeException>();
         }
 
-    }
-    
-
-    public class TestCommandHandler : ICommandHandler<TestCommand>
-    {
-        public Task Handel(TestCommand command)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

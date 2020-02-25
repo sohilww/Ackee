@@ -1,4 +1,4 @@
-namespace Ackee.Application.Test
+namespace Ackee.Application.Test.Utility
 {
     public class TestCommand : ICommand
     {
