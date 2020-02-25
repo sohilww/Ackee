@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Ackee.Domain.Model.Utility
+﻿namespace Ackee.Domain.Model.TestUtility
 {
     public class AggregateRootFake : IAggregateRoot
     {
