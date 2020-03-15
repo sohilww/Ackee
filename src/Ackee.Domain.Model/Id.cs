@@ -18,7 +18,8 @@
             if (obj.GetType() != this.GetType()) return false;
 
             var id = obj as Id<TKey>;
-            return this.DbId.Equals(id.DbId);
+            var result= this.DbId.Equals(id.DbId);
+            return result;
         }
 
         public override int GetHashCode()

@@ -12,7 +12,7 @@ namespace Ackee.DataAccess.ListDatabase
         where TAggregate:AggregateRoot<TKey>
         where TKey:Id
     {
-        public Dictionary<TKey, TAggregate> Context=new Dictionary<TKey, TAggregate>();
+        public static Dictionary<TKey, TAggregate> Context=new Dictionary<TKey, TAggregate>();
 
         public Task<TKey> GetNextId()
         {
@@ -25,14 +25,14 @@ namespace Ackee.DataAccess.ListDatabase
             Context.Add(aggregate.Id,aggregate);
         }
 
-        public Task Remove(TAggregate aggregate)
+        public async Task Remove(TAggregate aggregate)
         {
-            throw new NotImplementedException();
+            Context.Remove(aggregate.Id);
         }
 
-        public Task<TAggregate> Get(TKey key)
+        public async Task<TAggregate> Get(TKey key)
         {
-            throw new NotImplementedException();
+            return Context[key];
         }
 
         public Task<TAggregate> Find(Expression<Func<TAggregate, bool>> predicate)
@@ -43,6 +43,11 @@ namespace Ackee.DataAccess.ListDatabase
         public Task<List<TAggregate>> FindAll(Expression<Func<TAggregate, bool>> predicate)
         {
             throw new NotImplementedException();
+        }
+
+        public void Clear()
+        {
+            Context.Clear();
         }
     }
 }
