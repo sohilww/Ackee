@@ -38,7 +38,6 @@ namespace Ackee.DataAccess.ListDatabase.IntegrationTest
             Func<Task> func= async ()=>await _database.Get(_id);
             func.Should().Throw<Exception>();
         }
-
         private async Task CreateAggregate()
         {
             await _database.Create(_aggregate);

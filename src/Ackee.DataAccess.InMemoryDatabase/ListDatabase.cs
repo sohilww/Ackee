@@ -7,22 +7,22 @@ using Ackee.Domain.Model.Repositories;
 
 namespace Ackee.DataAccess.ListDatabase
 {
-    public class ListDatabase<TAggregate,TKey> :
-        IRepository<TAggregate,TKey> 
-        where TAggregate:AggregateRoot<TKey>
-        where TKey:Id
+    public class ListDatabase<TAggregate, TKey> :
+        IRepository<TAggregate, TKey>
+        where TAggregate : AggregateRoot<TKey>
+        where TKey : Id
     {
-        public static Dictionary<TKey, TAggregate> Context=new Dictionary<TKey, TAggregate>();
+        public static Dictionary<TKey, TAggregate> Context = new Dictionary<TKey, TAggregate>();
 
-        public Task<TKey> GetNextId()
+        public async virtual Task<TKey> GetNextId()
         {
-            throw new NotImplementedException();
+            throw new Exception();
         }
-        
+
 
         public async Task Create(TAggregate aggregate)
         {
-            Context.Add(aggregate.Id,aggregate);
+            Context.Add(aggregate.Id, aggregate);
         }
 
         public async Task Remove(TAggregate aggregate)
