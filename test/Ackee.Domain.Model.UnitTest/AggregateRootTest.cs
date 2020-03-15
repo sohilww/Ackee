@@ -1,5 +1,5 @@
 using System;
-using Ackee.Domain.Model.Utility;
+using Ackee.Domain.Model.TestUtility;
 using FluentAssertions;
 using Xunit;
 

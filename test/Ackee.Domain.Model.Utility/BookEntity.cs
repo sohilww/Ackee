@@ -1,4 +1,4 @@
-﻿namespace Ackee.Domain.Model.Utility
+﻿namespace Ackee.Domain.Model.TestUtility
 {
     public class BookEntity : Entity<long>
     {
