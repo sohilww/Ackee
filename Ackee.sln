@@ -17,9 +17,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.Core", "src\Ackee.Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "BuildScript\_build.csproj", "{D4CEFC49-3FB3-4B35-B7A8-928EE82789F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.Application", "src\Ackee.Application\Ackee.Application.csproj", "{77A7CF23-AAFC-4A81-8C9F-B34D479DB7FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.Application", "src\Ackee.Application\Ackee.Application.csproj", "{77A7CF23-AAFC-4A81-8C9F-B34D479DB7FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.Application.Test", "test\Ackee.Application.Test\Ackee.Application.Test.csproj", "{7E3C904E-1E69-4504-BE55-2D5C5C6DC44B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.Application.Test", "test\Ackee.Application.Test\Ackee.Application.Test.csproj", "{7E3C904E-1E69-4504-BE55-2D5C5C6DC44B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{31E2F3F8-3BAE-431D-959A-F5E67BD98169}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.DataAccess.ListDatabase", "src\Ackee.DataAccess.InMemoryDatabase\Ackee.DataAccess.ListDatabase.csproj", "{3280B6DF-DE24-4250-905C-1CDB93A393D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccessTests", "DataAccessTests", "{26A3F96A-B2B3-498E-BAAC-734CB2EBD678}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.DataAccess.ListDatabase.IntegrationTest", "test\Ackee.DataAccess.InMemoryDatabase.IntegrationTest\Ackee.DataAccess.ListDatabase.IntegrationTest.csproj", "{32BA760B-409D-410B-8C18-B94BC1E0B062}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +61,14 @@ Global
 		{7E3C904E-1E69-4504-BE55-2D5C5C6DC44B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E3C904E-1E69-4504-BE55-2D5C5C6DC44B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E3C904E-1E69-4504-BE55-2D5C5C6DC44B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3280B6DF-DE24-4250-905C-1CDB93A393D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3280B6DF-DE24-4250-905C-1CDB93A393D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3280B6DF-DE24-4250-905C-1CDB93A393D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3280B6DF-DE24-4250-905C-1CDB93A393D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32BA760B-409D-410B-8C18-B94BC1E0B062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32BA760B-409D-410B-8C18-B94BC1E0B062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32BA760B-409D-410B-8C18-B94BC1E0B062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32BA760B-409D-410B-8C18-B94BC1E0B062}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +80,10 @@ Global
 		{9A7CD471-50E5-48E6-976D-3D5A70F3D704} = {BEFD1F79-4EDF-4694-91E6-CE3B9256E827}
 		{77A7CF23-AAFC-4A81-8C9F-B34D479DB7FC} = {BEFD1F79-4EDF-4694-91E6-CE3B9256E827}
 		{7E3C904E-1E69-4504-BE55-2D5C5C6DC44B} = {69DF03DC-1388-47E5-8C57-8337BED8DE47}
+		{31E2F3F8-3BAE-431D-959A-F5E67BD98169} = {BEFD1F79-4EDF-4694-91E6-CE3B9256E827}
+		{3280B6DF-DE24-4250-905C-1CDB93A393D9} = {31E2F3F8-3BAE-431D-959A-F5E67BD98169}
+		{26A3F96A-B2B3-498E-BAAC-734CB2EBD678} = {69DF03DC-1388-47E5-8C57-8337BED8DE47}
+		{32BA760B-409D-410B-8C18-B94BC1E0B062} = {26A3F96A-B2B3-498E-BAAC-734CB2EBD678}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C944CE8C-12A1-4ED1-89B5-65F6842EB3BC}

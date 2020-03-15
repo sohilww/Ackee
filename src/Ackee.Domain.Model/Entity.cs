@@ -6,7 +6,7 @@
         {
             Id = id;
         }
-        public TKey Id { get;private set; }
+        public TKey Id { get;protected set; }
 
         public override bool Equals(object obj)
         {

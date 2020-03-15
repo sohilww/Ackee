@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using Ackee.Domain.Model;
+using Ackee.Domain.Model.Repositories;
+
+namespace Ackee.DataAccess.ListDatabase
+{
+    public class ListDatabase<TAggregate,TKey> :
+        IRepository<TAggregate,TKey> 
+        where TAggregate:AggregateRoot<TKey>
+        where TKey:Id
+    {
+        public Dictionary<TKey, TAggregate> Context=new Dictionary<TKey, TAggregate>();
+
+        public Task<TKey> GetNextId()
+        {
+            throw new NotImplementedException();
+        }
+        
+
+        public async Task Create(TAggregate aggregate)
+        {
+            Context.Add(aggregate.Id,aggregate);
+        }
+
+        public Task Remove(TAggregate aggregate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<TAggregate> Get(TKey key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<TAggregate> Find(Expression<Func<TAggregate, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<TAggregate>> FindAll(Expression<Func<TAggregate, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

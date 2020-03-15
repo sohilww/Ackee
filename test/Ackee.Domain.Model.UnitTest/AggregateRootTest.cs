@@ -1,4 +1,3 @@
-using System;
 using Ackee.Domain.Model.TestUtility;
 using FluentAssertions;
 using Xunit;
@@ -8,9 +7,10 @@ namespace Ackee.Domain.Model.UnitTest
     public class AggregateRootTest
     {
         [Fact]
-        public void should_create_entity_from_IAggregateRoot()
+        public void Should_create_entity_from_IAggregateRoot()
         {
-            var aggregateRoot=new AggregateRootFake();
+            var id=new IdFake(10);
+            var aggregateRoot=new AggregateRootFake(id);
 
             aggregateRoot.Should().BeAssignableTo<IAggregateRoot>();
         }
