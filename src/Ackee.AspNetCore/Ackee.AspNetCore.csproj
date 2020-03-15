@@ -5,6 +5,7 @@
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
 </Project>
