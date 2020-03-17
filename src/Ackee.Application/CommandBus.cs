@@ -13,7 +13,7 @@ namespace Ackee.Application
                 throw new ArgumentNullAckeeException();;
             _factory = factory;
         }
-        public async Task Dispatch(ICommand command)
+        public async Task Dispatch<T>(T command)
         {
             var handler = _factory.CreateHandler(command);
             await handler.Handel(command);

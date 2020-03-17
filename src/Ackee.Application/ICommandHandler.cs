@@ -3,7 +3,7 @@
 namespace Ackee.Application
 {
     public interface ICommandHandler { }
-    public interface ICommandHandler<T> where T :ICommand
+    public interface ICommandHandler<T>
     {
         Task Handel(T command);
     }

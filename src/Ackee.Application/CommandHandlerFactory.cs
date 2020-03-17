@@ -20,7 +20,7 @@ namespace Ackee.Application
                 throw new ArgumentNullAckeeException();
         }
 
-        public ICommandHandler<T> CreateHandler<T>(T command) where T : ICommand
+        public ICommandHandler<T> CreateHandler<T>(T command)
         {
             var handler = _serviceLocator.Resolve<ICommandHandler<T>>();
             return handler;

@@ -5,6 +5,6 @@ namespace Ackee.Application
 {
     public interface ICommandBus
     {
-        Task Dispatch(ICommand command);
+        Task Dispatch<T>(T command);
     }
 }

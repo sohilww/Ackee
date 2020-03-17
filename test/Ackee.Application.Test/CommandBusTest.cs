@@ -31,15 +31,15 @@ namespace Ackee.Application.Test
 
         }
 
-        private static ICommandHandler<ICommand> CreateHandler()
+        private static ICommandHandler<TestCommand> CreateHandler()
         {
-            return Substitute.For<ICommandHandler<ICommand>>();
+            return Substitute.For<ICommandHandler<TestCommand>>();
         }
 
-        private ICommandHandlerFactory CreateCommandHandlerFactory(ICommandHandler<ICommand> handler)
+        private ICommandHandlerFactory CreateCommandHandlerFactory(ICommandHandler<TestCommand> handler)
         {
             var commandFactory = Substitute.For<ICommandHandlerFactory>();
-            commandFactory.CreateHandler(Arg.Any<ICommand>()).Returns(handler);
+            commandFactory.CreateHandler(Arg.Any<TestCommand>()).Returns(handler);
             return commandFactory;
         }
     }
