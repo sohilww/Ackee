@@ -39,13 +39,14 @@ namespace Ackee.Config.Autofac
         {
             _builder.RegisterAssemblyTypes(assembly)
                 .As(type => type.GetInterfaces()
-                    .Where(interfaceType => interfaceType.IsClosedTypeOf(typeof(ICommandHandler<>))));
+                    .Where(interfaceType => interfaceType.IsClosedTypeOf(typeof(ICommandHandler<>))))
+                .InstancePerLifetimeScope();
         }
         public void RegisterRepositories(Assembly assembly)
         {
-            _builder
-                .RegisterAssemblyTypes(assembly)
-                .Where(a => a.IsAssignableTo<IRepository>())
+            _builder.RegisterAssemblyTypes(assembly)
+                .Where(a => typeof(IRepository).IsAssignableFrom(a))
+                .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
         }
 
