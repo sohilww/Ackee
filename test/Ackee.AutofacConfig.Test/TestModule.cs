@@ -1,3 +1,4 @@
+using Ackee.Application.Test.Utility;
 using Ackee.Config;
 using Ackee.Core;
 
@@ -8,6 +9,8 @@ namespace Ackee.AutofacConfig.IntegrationTest
         public void Load(IRegistration registration)
         {
             registration.RegisterScoped<TestService,IFacadeService>();
+
+            registration.RegisterCommandHandlers(typeof(TestCommandHandler).Assembly);
         }
     }
 }

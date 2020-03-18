@@ -38,11 +38,9 @@ namespace Ackee.Config.Autofac
         public void RegisterCommandHandlers(Assembly assembly)
         {
             _builder.RegisterAssemblyTypes(assembly)
-                .Where(a => a.IsAssignableFrom(typeof(ICommandHandler<>)))
-                .AsImplementedInterfaces();
-
+                .As(type => type.GetInterfaces()
+                    .Where(interfaceType => interfaceType.IsClosedTypeOf(typeof(ICommandHandler<>))));
         }
-
         public void RegisterRepositories(Assembly assembly)
         {
             _builder

@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Ackee.Config.Autofac\Ackee.Config.Autofac.csproj" />
     <ProjectReference Include="..\..\src\Ackee.Config\Ackee.Config.csproj" />
+    <ProjectReference Include="..\Ackee.Application.Test\Ackee.Application.Test.csproj" />
   </ItemGroup>
 
 </Project>
