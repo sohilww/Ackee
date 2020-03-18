@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ackee.Application\Ackee.Application.csproj" />
+    <ProjectReference Include="..\Ackee.AspNetCore\Ackee.AspNetCore.csproj" />
+    <ProjectReference Include="..\Ackee.Config\Ackee.Config.csproj" />
+    <ProjectReference Include="..\Ackee.Core\Ackee.Core.csproj" />
+    <ProjectReference Include="..\Ackee.Domain.Model\Ackee.Domain.Model.csproj" />
+  </ItemGroup>
+
+</Project>
