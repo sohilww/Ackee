@@ -9,6 +9,11 @@ namespace Ackee.Core.Exceptions
             Code = code;
         }
 
+        protected AckeeException(Enum code,string message):this(1,message)
+        {
+            
+        }
+
         public int Code { get;private set; }
     }
 }
