@@ -118,6 +118,7 @@ class Build : NukeBuild
                     .SetOutputDirectory(ArtifactsPath)
                     .SetAuthors("Soheil Karami")
                     .SetNoRestore(true)
+                    .SetRepositoryUrl("https://soheilkarami92.visualstudio.com/Ackee")
                     .SetNoBuild(true));
         });
 
