@@ -16,7 +16,7 @@ namespace Ackee.Application
         public async Task Dispatch<T>(T command)
         {
             var handler = _factory.CreateHandler(command);
-            await handler.Handel(command);
+            await handler.Handle(command);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Ackee.Application.Test
 
             await commandBus.Dispatch(command);
 
-            await commandHandler.Received(Once).Handel(command);
+            await commandHandler.Received(Once).Handle(command);
 
         }
         [Fact]
