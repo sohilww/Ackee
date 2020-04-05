@@ -11,7 +11,8 @@ namespace Ackee.AspNetCore
             foreach (var selector in controller.Selectors)
             {
                 if (!(selector.AttributeRouteModel is null))
-                    selector.AttributeRouteModel.Template = $"api/{controllerName}";
+                    selector.AttributeRouteModel.Template = 
+                        selector.AttributeRouteModel.Template.Replace("[controller]",controllerName, StringComparison.OrdinalIgnoreCase);
             }
 
         }

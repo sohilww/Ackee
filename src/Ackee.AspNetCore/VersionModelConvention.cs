@@ -11,13 +11,25 @@ namespace Ackee.AspNetCore
         }
         public void Apply(ControllerModel controller)
         {
-            var controllerName = controller.ControllerName;
             foreach (var selector in controller.Selectors)
             {
-                if (!(selector.AttributeRouteModel is null))
-                    selector.AttributeRouteModel.Template = $"{_version}/api/{controllerName}";
+                if (selector.AttributeRouteModel is null)
+                    CreateDefaultRoute(selector);
+                if (DoesControllerHaveAttribute(selector))
+                    selector.AttributeRouteModel.Template = _version + "/" + selector.AttributeRouteModel.Template;
             }
 
         }
+
+        private static bool DoesControllerHaveAttribute(SelectorModel selector)
+        {
+            return !(string.IsNullOrWhiteSpace(selector.AttributeRouteModel.Template));
+        }
+        private static void CreateDefaultRoute(SelectorModel selector)
+        {
+            selector.AttributeRouteModel = new AttributeRouteModel() {Template = "api/[controller]"};
+        }
+
+        
     }
 }
