@@ -2,10 +2,15 @@
 {
     public abstract class Id :ValueObject
     {
+        
 
     }
     public abstract class Id<TKey> : Id
     {
+        protected Id()
+        {
+            
+        }
         protected Id(TKey id)
         {
             DbId = id;
