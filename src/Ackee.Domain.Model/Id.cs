@@ -2,7 +2,7 @@
 {
     public abstract class Id :ValueObject
     {
-        
+       public abstract object GetIdValue();
 
     }
     public abstract class Id<TKey> : Id
@@ -30,6 +30,11 @@
         public override int GetHashCode()
         {
             return this.DbId.GetHashCode();
+        }
+
+        public override object GetIdValue()
+        {
+            return DbId;
         }
     }
 }
