@@ -6,5 +6,10 @@
         protected AggregateRoot(TKey id) : base(id)
         {
         }
+
+        protected AggregateRoot():base()
+        {
+
+        }
     }
 }
