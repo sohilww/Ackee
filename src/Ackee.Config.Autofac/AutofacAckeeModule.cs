@@ -15,7 +15,7 @@ namespace Ackee.Config.Autofac
         }
         public void Load(IRegistration registration)
         {
-            registration.RegisterSingleton<AutofacServiceLocator,IServiceLocator>();
+            registration.RegisterScoped<AutofacServiceLocator,IServiceLocator>();
         }
 
         public IRegistration CreateRegistry()
