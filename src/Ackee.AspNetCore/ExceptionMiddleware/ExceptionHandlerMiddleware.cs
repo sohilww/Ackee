@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Ackee.AspNetCore.ExceptionMiddleware
 {
-    public class ExceptionHandlerMiddleware :IMiddleware
+    public class ExceptionHandlerMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly int _bcCode;
