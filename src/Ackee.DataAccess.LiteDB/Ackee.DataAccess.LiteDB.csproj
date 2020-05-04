@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ackee.Config\Ackee.Config.csproj" />
     <ProjectReference Include="..\Ackee.Domain.Model\Ackee.Domain.Model.csproj" />
   </ItemGroup>
 

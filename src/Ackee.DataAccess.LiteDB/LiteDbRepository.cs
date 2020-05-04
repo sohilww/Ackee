@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Ackee.Domain.Model;
@@ -61,7 +60,7 @@ namespace Ackee.DataAccess.LiteDB
             }
         }
 
-        private ILiteQueryable<TAggregate> GetAggregateDidNotDelete(LiteRepository db)
+        protected ILiteQueryable<TAggregate> GetAggregateDidNotDelete(LiteRepository db)
         {
             return db.Query<TAggregate>().Where(a => !a.Deleted);
         }
