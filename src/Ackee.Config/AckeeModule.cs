@@ -6,8 +6,8 @@ namespace Ackee.Config
     {
         public void Load(IRegistration registration)
         {
-            registration.RegisterSingleton<CommandBus, ICommandBus>();
-            registration.RegisterSingleton<CommandHandlerFactory, ICommandHandlerFactory>();
+            registration.RegisterScoped<CommandBus, ICommandBus>();
+            registration.RegisterScoped<CommandHandlerFactory, ICommandHandlerFactory>();
         }
     }
 }
