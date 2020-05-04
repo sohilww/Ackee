@@ -5,15 +5,15 @@ namespace Ackee.Config.Autofac
 {
     public class AutofacServiceLocator : IServiceLocator
     {
-        private readonly IComponentContext _context;
+        private readonly IComponentContext _scoped;
 
-        public AutofacServiceLocator(IComponentContext context)
+        public AutofacServiceLocator(ILifetimeScope scoped)
         {
-            _context = context;
+            _scoped = scoped;
         }
         public T Resolve<T>()
         {
-            return (T) _context.Resolve(typeof(T));
+            return (T) _scoped.Resolve(typeof(T));
         }
     }
 }
