@@ -62,7 +62,8 @@ namespace Ackee.Config.Autofac
             Action<TImplementation> releaseAction=null)
         {
              var ss= _builder.Register(context =>
-                register.Invoke(new AutofacDependencyResolver(context.Resolve<ILifetimeScope>())));
+                register.Invoke(new AutofacDependencyResolver(context.Resolve<ILifetimeScope>())))
+                 .InstancePerLifetimeScope();
 
              if (releaseAction != null)
                  ss.OnRelease(releaseAction);
