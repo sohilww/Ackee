@@ -10,11 +10,14 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
 {
     public class LiteDbRepositoryTest : IDisposable
     {
-        private BookRepositoryFake _bookRepository;
+        private readonly BookRepositoryFake _bookRepository;
+        private readonly LiteRepository _db;
+        private string _connectionString= Environment.CurrentDirectory+ "/lite.db";
 
         public LiteDbRepositoryTest()
         {
-            _bookRepository = new BookRepositoryFake();
+            _db = new LiteRepository(_connectionString);
+            _bookRepository = new BookRepositoryFake(_db);
         }
         [Fact]
         public async Task should_generate_new_id()
@@ -22,7 +25,6 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
             var id = await _bookRepository.GetNextId();
 
             id.DbId.Should().NotBe(0);
-
         }
 
         [Fact]
@@ -35,7 +37,6 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
             var insertedBook = await _bookRepository.Get(book.Id);
 
             insertedBook.Should().Be(book);
-
         }
 
         [Fact]
@@ -115,7 +116,8 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
 
         public void Dispose()
         {
-            File.Delete(_bookRepository.ConnectionString);
+            _db.Dispose();
+            File.Delete(_connectionString);
         }
     }
 }

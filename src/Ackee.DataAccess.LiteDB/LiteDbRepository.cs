@@ -12,57 +12,42 @@ namespace Ackee.DataAccess.LiteDB
         where TKey : Id
         where TAggregate : AggregateRoot<TKey>
     {
+        private readonly LiteRepository _db;
+      
         public abstract Task<TKey> GetNextId();
-        protected string _connectionString = Environment.CurrentDirectory + "liteDb.db";
-
-        protected LiteDbRepository()
+        protected LiteDbRepository(LiteRepository db)
         {
+            _db = db;
         }
         public async Task Create(TAggregate aggregate)
         {
-            using (LiteRepository db = new LiteRepository(_connectionString))
-            {
-                db.Insert(aggregate);
-            }
+            _db.Insert(aggregate);
         }
 
         public async Task Remove(TAggregate aggregate)
         {
-            using (LiteRepository db = new LiteRepository(_connectionString))
-            {
-                aggregate.Delete();
-                db.Update(aggregate);
-            }
+            aggregate.Delete();
+            _db.Update(aggregate);
         }
 
         public async Task<TAggregate> Get(TKey key)
         {
-            using (var db = new LiteRepository(_connectionString))
-            {
-                return db.FirstOrDefault<TAggregate>(a => a.Id == key);
-            }
+            return _db.FirstOrDefault<TAggregate>(a => a.Id == key);
         }
-
 
         protected async Task<TAggregate> Find(Expression<Func<TAggregate, bool>> predicate)
         {
-            using (var db = new LiteRepository(_connectionString))
-            {
-                return GetAggregateDidNotDelete(db).Where(a=>!a.Deleted).Where(predicate).FirstOrDefault();
-            }
+            return GetAggregateDidNotDelete().Where(a => !a.Deleted).Where(predicate).FirstOrDefault();
         }
 
         protected async Task<List<TAggregate>> FindAll(Expression<Func<TAggregate, bool>> predicate)
         {
-            using (var db = new LiteRepository(_connectionString))
-            {
-                return GetAggregateDidNotDelete(db).Where(a=>!a.Deleted).Where(predicate).ToList();
-            }
+            return GetAggregateDidNotDelete().Where(a => !a.Deleted).Where(predicate).ToList();
         }
 
-        protected ILiteQueryable<TAggregate> GetAggregateDidNotDelete(LiteRepository db)
+        protected ILiteQueryable<TAggregate> GetAggregateDidNotDelete()
         {
-            return db.Query<TAggregate>().Where(a => !a.Deleted);
+            return _db.Query<TAggregate>().Where(a => !a.Deleted);
         }
     }
 }

@@ -9,12 +9,14 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
 {
     public class BookRepositoryFake : LiteDbRepository<Book, BookId>
     {
+        public BookRepositoryFake(LiteRepository db) : base(db)
+        {
+        }
         public async override Task<BookId> GetNextId()
         {
             return new BookId(10);
         }
 
-        public string ConnectionString => _connectionString;
 
         public async Task<Book> Find(Expression<Func<Book, bool>> predicate)
         {
@@ -25,5 +27,6 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
             return await base.FindAll(predicate);
         }
 
+       
     }
 }
