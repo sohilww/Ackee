@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
+using Ackee.Config.Loader;
 
 namespace Ackee.Config
 {
@@ -13,6 +15,10 @@ namespace Ackee.Config
         void RegisterRepositories(Assembly assembly);
 
         void RegisterScoped<TImplementation, TService>();
+
         void RegisterSingleton<TImplementation, TService>();
+
+        void RegisterInstanceAsScoped<TImplementation>(Func<IDependencyResolver, TImplementation> register, Action<TImplementation> releaseAction = null);
+
     }
 }

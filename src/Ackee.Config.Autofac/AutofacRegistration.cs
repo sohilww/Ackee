@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using Ackee.Application;
 using Ackee.AspNetCore;
+using Ackee.Config.Loader;
 using Ackee.Core;
 using Ackee.Domain.Model.Repositories;
 using Autofac;
@@ -23,10 +24,7 @@ namespace Ackee.Config.Autofac
                 .Where(a => a.IsAssignableTo<AckeeApiController>())
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
-
-
         }
-
         public void RegisterFacadeServices(Assembly assembly)
         {
             _builder
@@ -49,17 +47,25 @@ namespace Ackee.Config.Autofac
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
         }
-
         public void RegisterScoped<TImplementation, TService>()
         {
             _builder.RegisterType<TImplementation>()
                 .As<TService>()
                 .InstancePerLifetimeScope();
         }
-
         public void RegisterSingleton<TImplementation, TService>()
         {
             _builder.RegisterType<TImplementation>().As<TService>().SingleInstance();
+        }
+
+        public void RegisterInstanceAsScoped<TImplementation>(Func<IDependencyResolver,TImplementation> register,
+            Action<TImplementation> releaseAction=null)
+        {
+             var ss= _builder.Register(context =>
+                register.Invoke(new AutofacDependencyResolver(context.Resolve<ILifetimeScope>())));
+
+             if (releaseAction != null)
+                 ss.OnRelease(releaseAction);
         }
     }
 }
