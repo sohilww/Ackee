@@ -12,7 +12,7 @@ namespace Ackee.DataAccess.LiteDB
         where TKey : Id
         where TAggregate : AggregateRoot<TKey>
     {
-        private readonly LiteRepository _db;
+        protected readonly LiteRepository _db;
       
         public abstract Task<TKey> GetNextId();
         protected LiteDbRepository(LiteRepository db)
