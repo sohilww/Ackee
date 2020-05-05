@@ -19,7 +19,5 @@ namespace Ackee.Domain.Model.Repositories
         Task Create(T aggregate);
         Task Remove(T aggregate);
         Task<T> Get(TKey key);
-        Task<T> Find(Expression<Func<T, bool>> predicate);
-        Task<List<T>> FindAll(Expression<Func<T, bool>> predicate);
     }
 }

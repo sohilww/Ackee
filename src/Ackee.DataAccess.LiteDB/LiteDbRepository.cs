@@ -15,7 +15,7 @@ namespace Ackee.DataAccess.LiteDB
         public abstract Task<TKey> GetNextId();
         protected string _connectionString = Environment.CurrentDirectory + "liteDb.db";
 
-        public LiteDbRepository()
+        protected LiteDbRepository()
         {
         }
         public async Task Create(TAggregate aggregate)
@@ -44,7 +44,7 @@ namespace Ackee.DataAccess.LiteDB
         }
 
 
-        public async Task<TAggregate> Find(Expression<Func<TAggregate, bool>> predicate)
+        protected async Task<TAggregate> Find(Expression<Func<TAggregate, bool>> predicate)
         {
             using (var db = new LiteRepository(_connectionString))
             {
@@ -52,7 +52,7 @@ namespace Ackee.DataAccess.LiteDB
             }
         }
 
-        public async Task<List<TAggregate>> FindAll(Expression<Func<TAggregate, bool>> predicate)
+        protected async Task<List<TAggregate>> FindAll(Expression<Func<TAggregate, bool>> predicate)
         {
             using (var db = new LiteRepository(_connectionString))
             {
