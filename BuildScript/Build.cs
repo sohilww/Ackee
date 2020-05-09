@@ -132,7 +132,7 @@ class Build : NukeBuild
 
             foreach (var package in packages)
             {
-                if(package.ToLower().Contains("test"))
+                if(package.ToLower().Contains("testutility"))
                     continue;
                 Logger.Log(LogLevel.Warning, package);
                 DotNetNuGetPush(a => a

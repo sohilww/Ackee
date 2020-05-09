@@ -49,7 +49,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.DataAccess.LiteDB", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.DataAccess.LiteDB.IntegrationTest", "test\Ackee.DataAccess.LiteDB.IntegrationTest\Ackee.DataAccess.LiteDB.IntegrationTest.csproj", "{81CF467E-333E-4A1A-90ED-965A95257540}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.DataAccess", "src\Ackee.DataAccess\Ackee.DataAccess.csproj", "{9D398311-2C7C-49B6-B966-06AB3F857107}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.DataAccess", "src\Ackee.DataAccess\Ackee.DataAccess.csproj", "{9D398311-2C7C-49B6-B966-06AB3F857107}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.TestHelpers", "src\Ackee.TestHelpers\Ackee.TestHelpers.csproj", "{BE4FD6E0-BE42-40A9-843E-066AAA15ADAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +125,10 @@ Global
 		{9D398311-2C7C-49B6-B966-06AB3F857107}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D398311-2C7C-49B6-B966-06AB3F857107}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D398311-2C7C-49B6-B966-06AB3F857107}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE4FD6E0-BE42-40A9-843E-066AAA15ADAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE4FD6E0-BE42-40A9-843E-066AAA15ADAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE4FD6E0-BE42-40A9-843E-066AAA15ADAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE4FD6E0-BE42-40A9-843E-066AAA15ADAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -149,6 +155,7 @@ Global
 		{E11051C8-7F5E-4FDD-9EB5-4D9B7310D584} = {31E2F3F8-3BAE-431D-959A-F5E67BD98169}
 		{81CF467E-333E-4A1A-90ED-965A95257540} = {26A3F96A-B2B3-498E-BAAC-734CB2EBD678}
 		{9D398311-2C7C-49B6-B966-06AB3F857107} = {31E2F3F8-3BAE-431D-959A-F5E67BD98169}
+		{BE4FD6E0-BE42-40A9-843E-066AAA15ADAC} = {BEFD1F79-4EDF-4694-91E6-CE3B9256E827}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C944CE8C-12A1-4ED1-89B5-65F6842EB3BC}
