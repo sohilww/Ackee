@@ -53,6 +53,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.DataAccess", "src\Ack
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.TestHelpers", "src\Ackee.TestHelpers\Ackee.TestHelpers.csproj", "{BE4FD6E0-BE42-40A9-843E-066AAA15ADAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.TestHelpers.Test", "test\Ackee.TestHelpers.Test\Ackee.TestHelpers.Test.csproj", "{A9BC7B0B-C9C4-4777-BC31-837C08BA15A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +131,10 @@ Global
 		{BE4FD6E0-BE42-40A9-843E-066AAA15ADAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE4FD6E0-BE42-40A9-843E-066AAA15ADAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE4FD6E0-BE42-40A9-843E-066AAA15ADAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9BC7B0B-C9C4-4777-BC31-837C08BA15A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9BC7B0B-C9C4-4777-BC31-837C08BA15A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9BC7B0B-C9C4-4777-BC31-837C08BA15A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9BC7B0B-C9C4-4777-BC31-837C08BA15A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -156,6 +162,7 @@ Global
 		{81CF467E-333E-4A1A-90ED-965A95257540} = {26A3F96A-B2B3-498E-BAAC-734CB2EBD678}
 		{9D398311-2C7C-49B6-B966-06AB3F857107} = {31E2F3F8-3BAE-431D-959A-F5E67BD98169}
 		{BE4FD6E0-BE42-40A9-843E-066AAA15ADAC} = {BEFD1F79-4EDF-4694-91E6-CE3B9256E827}
+		{A9BC7B0B-C9C4-4777-BC31-837C08BA15A7} = {69DF03DC-1388-47E5-8C57-8337BED8DE47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C944CE8C-12A1-4ED1-89B5-65F6842EB3BC}
