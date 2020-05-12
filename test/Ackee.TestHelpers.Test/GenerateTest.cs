@@ -11,7 +11,7 @@ namespace Ackee.TestHelpers.Test
         {
             var length = 15;
 
-            var randomString = Generate.Random().Character().WithLength(length: length);
+            var randomString = Generate.Random().Character().WithLength(length);
 
             randomString.Should().HaveLength(length);
         }

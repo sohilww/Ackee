@@ -2,6 +2,7 @@
 
 namespace Ackee.AspNetCore
 {
+    [ApiController]
     public class AckeeApiController : ControllerBase
     {
     }
