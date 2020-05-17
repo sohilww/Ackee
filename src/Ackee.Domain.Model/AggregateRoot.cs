@@ -3,6 +3,7 @@
     public abstract class AggregateRoot<TKey> : Entity<TKey>,
         IAggregateRoot where TKey : Id
     {
+        private IEventPublisher _eventPublisher;
         protected AggregateRoot(TKey id) : base(id)
         {
         }
@@ -12,6 +13,10 @@
 
         }
 
-        
+
+        public void Publish<TEvent>(TEvent @event) where TEvent : IDomainEvent
+        {
+            _eventPublisher.Publish(@event);
+        }
     }
 }
