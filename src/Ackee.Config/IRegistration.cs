@@ -18,6 +18,9 @@ namespace Ackee.Config
 
         void RegisterSingleton<TImplementation, TService>();
 
+        void RegisterDecorator<TDecorator, TService>() where TDecorator : TService;
+        void RegisterDecorator(Type decorator, Type service);
+
         void RegisterInstanceAsScoped<TImplementation>(Func<IDependencyResolver, TImplementation> register, Action<TImplementation> releaseAction = null);
 
     }

@@ -35,6 +35,7 @@ namespace Ackee.Config.Autofac
 
         public void RegisterCommandHandlers(Assembly assembly)
         {
+
             _builder.RegisterAssemblyTypes(assembly)
                 .As(type => type.GetInterfaces()
                     .Where(interfaceType => interfaceType.IsClosedTypeOf(typeof(ICommandHandler<>))))
@@ -52,6 +53,17 @@ namespace Ackee.Config.Autofac
             _builder.RegisterType<TImplementation>()
                 .As<TService>()
                 .InstancePerLifetimeScope();
+        }
+
+        public void RegisterDecorator<TDecorator, TService>() where TDecorator : TService
+        {
+            _builder.RegisterDecorator<TDecorator, TService>();
+        }
+
+        public void RegisterDecorator(Type decorator, Type service)
+        {
+            _builder.RegisterGenericDecorator(decorator, service);
+
         }
         public void RegisterSingleton<TImplementation, TService>()
         {

@@ -6,7 +6,7 @@ namespace Ackee.Application.Test.Utility
     {
         public Task Handle(TestCommand command)
         {
-            throw new System.NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }
