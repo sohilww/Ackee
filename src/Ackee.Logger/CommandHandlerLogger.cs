@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Ackee.Application;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 
 namespace Ackee.Logger
 {
