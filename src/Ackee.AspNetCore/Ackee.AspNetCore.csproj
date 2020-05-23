@@ -10,10 +10,12 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Ackee.Core\Ackee.Core.csproj" />
+    <ProjectReference Include="..\Ackee.DataAccess\Ackee.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>
