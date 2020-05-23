@@ -14,6 +14,7 @@ namespace Ackee.AspNetCore.Logger
                 opt.EnrichDiagnosticContext = (context, httpContext) =>
                 {
                     context.Set("UserName", "system");
+                    context.Set("Client IP",httpContext.Connection.RemoteIpAddress.ToString());
                 };
             });
             
