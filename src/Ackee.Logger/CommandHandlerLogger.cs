@@ -7,9 +7,9 @@ namespace Ackee.Logger
     public class LoggingDecoratorCommandHandler<T>: ICommandHandler<T>
     {
         private readonly ICommandHandler<T> _decorated;
-        private readonly ILogger _logger;
+        private readonly ILogger<ICommandHandler<T>> _logger;
 
-        public LoggingDecoratorCommandHandler(ICommandHandler<T> decorated,ILogger logger)
+        public LoggingDecoratorCommandHandler(ICommandHandler<T> decorated,ILogger<ICommandHandler<T>> logger)
         {
             _decorated = decorated;
             _logger = logger;
