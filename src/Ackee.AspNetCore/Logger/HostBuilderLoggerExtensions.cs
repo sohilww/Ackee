@@ -11,7 +11,7 @@ namespace Ackee.AspNetCore.Logger
         public static IHostBuilder UseAckeeLogger(this IHostBuilder builder)
         {
 
-            var path = Environment.CurrentDirectory + "\\bin\\debug\\Logs";
+            var path = Environment.CurrentDirectory + "\\bin\\debug\\Logs\\log.json";
             return builder.UseSerilog((context, configuration) =>
             {
                 configuration
