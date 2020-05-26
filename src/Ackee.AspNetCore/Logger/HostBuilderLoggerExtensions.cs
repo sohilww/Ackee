@@ -16,6 +16,9 @@ namespace Ackee.AspNetCore.Logger
             {
                 configuration
                     .Enrich.FromLogContext()
+                    .MinimumLevel.Information()
+                    .MinimumLevel.Override("Microsoft",LogEventLevel.Warning)
+                    .MinimumLevel.Override("System", LogEventLevel.Error)
                     .Enrich.WithMachineName()
                     .WriteTo.Console()
                     .WriteTo.File(new CompactJsonFormatter(), path,
