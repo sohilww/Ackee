@@ -10,7 +10,7 @@ namespace Ackee.Domain.Model.TestUtility.Exceptions
         }
 
         public TestAckeeException(Enum code, string message)
-            : base(Convert.ToInt32(code), message)
+            : base(code, message)
         {
         }
     }
