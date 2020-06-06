@@ -55,7 +55,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.TestHelpers", "src\Ac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.TestHelpers.Test", "test\Ackee.TestHelpers.Test\Ackee.TestHelpers.Test.csproj", "{A9BC7B0B-C9C4-4777-BC31-837C08BA15A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.Logger", "src\Ackee.Logger\Ackee.Logger.csproj", "{95CCEBDB-6D5B-477C-85AB-E76D9E4059D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.Logger", "src\Ackee.Logger\Ackee.Logger.csproj", "{95CCEBDB-6D5B-477C-85AB-E76D9E4059D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.Extensions", "src\Ackee.Extensions\Ackee.Extensions.csproj", "{B0CAFFFC-FB1D-494A-A1B8-03847AD11F0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +143,10 @@ Global
 		{95CCEBDB-6D5B-477C-85AB-E76D9E4059D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95CCEBDB-6D5B-477C-85AB-E76D9E4059D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95CCEBDB-6D5B-477C-85AB-E76D9E4059D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0CAFFFC-FB1D-494A-A1B8-03847AD11F0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0CAFFFC-FB1D-494A-A1B8-03847AD11F0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0CAFFFC-FB1D-494A-A1B8-03847AD11F0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0CAFFFC-FB1D-494A-A1B8-03847AD11F0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -170,6 +176,7 @@ Global
 		{BE4FD6E0-BE42-40A9-843E-066AAA15ADAC} = {BEFD1F79-4EDF-4694-91E6-CE3B9256E827}
 		{A9BC7B0B-C9C4-4777-BC31-837C08BA15A7} = {69DF03DC-1388-47E5-8C57-8337BED8DE47}
 		{95CCEBDB-6D5B-477C-85AB-E76D9E4059D6} = {BEFD1F79-4EDF-4694-91E6-CE3B9256E827}
+		{B0CAFFFC-FB1D-494A-A1B8-03847AD11F0A} = {BEFD1F79-4EDF-4694-91E6-CE3B9256E827}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C944CE8C-12A1-4ED1-89B5-65F6842EB3BC}

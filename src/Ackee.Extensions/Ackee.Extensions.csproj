@@ -4,8 +4,4 @@
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Ackee.Extensions\Ackee.Extensions.csproj" />
-  </ItemGroup>
-
 </Project>

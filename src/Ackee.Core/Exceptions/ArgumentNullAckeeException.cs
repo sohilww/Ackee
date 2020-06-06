@@ -2,9 +2,15 @@
 {
     public class ArgumentNullAckeeException : AckeeException
     {
-        public ArgumentNullAckeeException()
-            : base(1,"Argument has problem")
+        public ArgumentNullAckeeException(string field="")
+            : base(1,$"Argument {field} has problem")
         {
+        }
+
+        public ArgumentNullAckeeException(string message,string field) 
+            :base(1,message)
+        {
+            
         }
     }
 }
