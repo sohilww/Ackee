@@ -1,4 +1,6 @@
-﻿namespace Ackee.Domain.Model
+﻿using System;
+
+namespace Ackee.Domain.Model
 {
     public abstract class Entity<TKey>
     {
@@ -26,5 +28,6 @@
         {
             Deleted = true;
         }
+        public DateTime CreatingDateTime { get; }
     }
 }

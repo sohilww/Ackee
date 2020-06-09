@@ -1,4 +1,6 @@
-﻿namespace Ackee.Domain.Model.TestUtility
+﻿using System;
+
+namespace Ackee.Domain.Model.TestUtility
 {
     public class Book : AggregateRoot<BookId>
     {
@@ -12,6 +14,8 @@
         }
 
         public string Name { get;private set; }
+        
+
 
         public void Update(string newName)
         {

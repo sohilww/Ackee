@@ -163,3 +163,4 @@ NDependOut
 /BuildScript/tools/*
 !/BuildScript/tools/packages.config
 *.nupkg
+/artifacts/nuget.exe

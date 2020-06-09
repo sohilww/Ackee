@@ -1,3 +1,4 @@
+using System;
 using Ackee.Domain.Model.TestUtility;
 using FluentAssertions;
 using Xunit;
@@ -55,6 +56,12 @@ namespace Ackee.Domain.Model.UnitTest
             var secondEntity = new Book(11);
 
             firstEntity.Should().NotBe(secondEntity);
+        }
+
+        [Fact]
+        public void entity_has_CreationDateTime()
+        {
+            _entity.CreatingDateTime.Should().BeLessThan(DateTime.Now.TimeOfDay);
         }
     }
 }
