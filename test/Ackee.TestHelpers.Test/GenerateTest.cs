@@ -7,7 +7,7 @@ namespace Ackee.TestHelpers.Test
     public class GenerateTest
     {
         [Fact]
-        public void Should_Generate_Random_String()
+        public void Generate_Random_String()
         {
             var length = 15;
 
@@ -17,7 +17,7 @@ namespace Ackee.TestHelpers.Test
         }
 
         [Fact]
-        public void Should_Generate_Random_Digits_In_String_Type()
+        public void Generate_Random_Digits_In_String_Type()
         {
             var length = 15;
 
@@ -28,7 +28,7 @@ namespace Ackee.TestHelpers.Test
         }
 
         [Fact]
-        public void Should_Generate_Random_Number()
+        public void Generate_Random_Number()
         {
             var digits = Generate.Random().Number<int>().MaxTo(5).Digits();
 
