@@ -11,6 +11,7 @@ namespace Ackee.Domain.Model
         protected Entity(TKey id)
         {
             Id = id;
+            CreatingDateTime=DateTime.Now;
         }
         public TKey Id { get; protected set; }
         
