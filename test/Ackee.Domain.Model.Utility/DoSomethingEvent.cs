@@ -4,14 +4,9 @@
     {
         public DoSomethingEvent(IdFake id)
         {
-            Id = id;
+            IdFake = id;
         }
 
-        public DoSomethingEvent(BookId bookId)
-        {
-            
-        }
-
-        public IdFake Id { get; set; }
+        public IdFake IdFake { get; set; }
     }
 }

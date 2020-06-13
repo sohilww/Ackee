@@ -13,15 +13,17 @@ namespace Ackee.DataAccess.LiteDB
         where TAggregate : AggregateRoot<TKey>
     {
         protected readonly LiteRepository _db;
-      
+        UncommittedEventHandler _uncommittedEventHandler;
         public abstract Task<TKey> GetNextId();
         protected LiteDbRepository(LiteRepository db)
         {
             _db = db;
+            _uncommittedEventHandler= new UncommittedEventHandler(_db);
         }
         public async Task Create(TAggregate aggregate)
         {
             _db.Insert(aggregate);
+            _uncommittedEventHandler.Handle(aggregate.UncommittedEvent);
         }
 
         public async Task Remove(TAggregate aggregate)
@@ -48,6 +50,23 @@ namespace Ackee.DataAccess.LiteDB
         protected ILiteQueryable<TAggregate> GetAggregateDidNotDelete()
         {
             return _db.Query<TAggregate>().Where(a => !a.Deleted);
+        }
+    }
+
+    public class UncommittedEventHandler
+    {
+        private readonly LiteRepository _db;
+        public UncommittedEventHandler(LiteRepository db)
+        {
+            _db = db;
+        }
+        public void Handle(ICollection<IDomainEvent> uncommittedEvents)
+        {
+            foreach (var uncommittedEvent in uncommittedEvents)
+            {
+                _db.Insert(uncommittedEvent, "Events");
+            }
+            
         }
     }
 }

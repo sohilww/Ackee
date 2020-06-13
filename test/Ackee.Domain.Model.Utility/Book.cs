@@ -24,17 +24,13 @@ namespace Ackee.Domain.Model.TestUtility
 
         public void DoSomethingAndPublishEvent()
         {
-            Publish(new DoSomethingEvent(this.Id));
+            Publish(new BookDoSomethingEvent(this.Id));
         }
     }
 
     public class BookId : Id<long>
     {
-        public BookId():base()
-        {
-            
-        }
-        public BookId(long id):base(id)
+        public BookId(long dbId):base(dbId)
         {
             
         }

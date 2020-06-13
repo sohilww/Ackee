@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Ackee.Domain.Model;
 using Ackee.Domain.Model.TestUtility;
 using FluentAssertions;
 using LiteDB;
@@ -13,10 +14,12 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
     {
         private readonly BookRepositoryFake _bookRepository;
         private readonly AggregateRootFake _aggregate=  new AggregateRootFake(new IdFake(1));
+        private Book _book;
 
         public LiteDbRepositoryTest()
         {
             _bookRepository = new BookRepositoryFake(Db);
+            _book = BookFactoryTest.Create();
         }
         [Fact]
         public async Task should_generate_new_id()
@@ -38,16 +41,15 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
             insertedBook.Should().Be(book);
         }
         [Fact]
-        public async Task If_aggregate_has_events_it_saves_in_events_collection()
+        public async Task If_aggregate_has_events_it_saves_in_UncommittedEvent_collection()
         {
-            _aggregate.DoSomethingAndPublishEvent();
+            _book.DoSomethingAndPublishEvent();
 
-            var uncommittedEvent = _aggregate.UncommittedEvent.First();
+            await _bookRepository.Create(_book);
 
-            Db.Insert(uncommittedEvent);
-
-            _aggregate.UncommittedEvent.Should().NotBeEmpty();
-
+            var ss= Db.Query<IDomainEvent>("Events").ToList();
+            
+            ss.Should().NotBeEmpty();
         }
 
         [Fact]
