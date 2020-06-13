@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Ackee.Domain.Model.TestUtility;
 using FluentAssertions;
@@ -8,16 +9,14 @@ using Xunit;
 
 namespace Ackee.DataAccess.LiteDB.IntegrationTest
 {
-    public class LiteDbRepositoryTest : IDisposable
+    public class LiteDbRepositoryTest : LiteDbBaseClassTest, IDisposable
     {
         private readonly BookRepositoryFake _bookRepository;
-        private readonly LiteRepository _db;
-        private string _connectionString= Environment.CurrentDirectory+ "/lite.db";
+        private readonly AggregateRootFake _aggregate=  new AggregateRootFake(new IdFake(1));
 
         public LiteDbRepositoryTest()
         {
-            _db = new LiteRepository(_connectionString);
-            _bookRepository = new BookRepositoryFake(_db);
+            _bookRepository = new BookRepositoryFake(Db);
         }
         [Fact]
         public async Task should_generate_new_id()
@@ -37,6 +36,18 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
             var insertedBook = await _bookRepository.Get(book.Id);
 
             insertedBook.Should().Be(book);
+        }
+        [Fact]
+        public async Task If_aggregate_has_events_it_saves_in_events_collection()
+        {
+            _aggregate.DoSomethingAndPublishEvent();
+
+            var uncommittedEvent = _aggregate.UncommittedEvent.First();
+
+            Db.Insert(uncommittedEvent);
+
+            _aggregate.UncommittedEvent.Should().NotBeEmpty();
+
         }
 
         [Fact]
@@ -116,8 +127,8 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
 
         public void Dispose()
         {
-            _db.Dispose();
-            File.Delete(_connectionString);
+            Db.Dispose();
+            File.Delete(ConnectionString);
         }
     }
 }

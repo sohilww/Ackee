@@ -7,6 +7,11 @@
             Id = id;
         }
 
+        public DoSomethingEvent(BookId bookId)
+        {
+            
+        }
+
         public IdFake Id { get; set; }
     }
 }

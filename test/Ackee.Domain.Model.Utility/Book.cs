@@ -21,6 +21,11 @@ namespace Ackee.Domain.Model.TestUtility
         {
             Name = newName;
         }
+
+        public void DoSomethingAndPublishEvent()
+        {
+            Publish(new DoSomethingEvent(this.Id));
+        }
     }
 
     public class BookId : Id<long>
