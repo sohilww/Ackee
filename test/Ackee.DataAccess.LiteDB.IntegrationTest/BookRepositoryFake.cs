@@ -27,6 +27,10 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
             return await base.FindAll(predicate);
         }
 
-       
+
+        public async Task Update(Book aggregate)
+        {
+            await base.Update(aggregate);
+        }
     }
 }

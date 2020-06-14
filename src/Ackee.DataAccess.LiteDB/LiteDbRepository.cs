@@ -12,29 +12,29 @@ namespace Ackee.DataAccess.LiteDB
         where TKey : Id
         where TAggregate : AggregateRoot<TKey>
     {
-        protected readonly LiteRepository _db;
-        UncommittedEventHandler _uncommittedEventHandler;
+        protected readonly LiteRepository Db;
+        readonly UncommittedEventHandler _uncommittedEventHandler;
         public abstract Task<TKey> GetNextId();
         protected LiteDbRepository(LiteRepository db)
         {
-            _db = db;
-            _uncommittedEventHandler= new UncommittedEventHandler(_db);
+            Db = db;
+            _uncommittedEventHandler= new UncommittedEventHandler(Db);
         }
         public async Task Create(TAggregate aggregate)
         {
-            _db.Insert(aggregate);
+            Db.Insert(aggregate);
             _uncommittedEventHandler.Handle(aggregate.UncommittedEvent);
         }
 
         public async Task Remove(TAggregate aggregate)
         {
             aggregate.Delete();
-            _db.Update(aggregate);
+            await Update(aggregate);
         }
 
         public async Task<TAggregate> Get(TKey key)
         {
-            return _db.FirstOrDefault<TAggregate>(a => a.Id == key);
+            return Db.FirstOrDefault<TAggregate>(a => a.Id == key);
         }
 
         protected async Task<TAggregate> Find(Expression<Func<TAggregate, bool>> predicate)
@@ -49,24 +49,13 @@ namespace Ackee.DataAccess.LiteDB
 
         protected ILiteQueryable<TAggregate> GetAggregateDidNotDelete()
         {
-            return _db.Query<TAggregate>().Where(a => !a.Deleted);
+            return Db.Query<TAggregate>().Where(a => !a.Deleted);
         }
-    }
 
-    public class UncommittedEventHandler
-    {
-        private readonly LiteRepository _db;
-        public UncommittedEventHandler(LiteRepository db)
+        protected async Task Update(TAggregate aggregate)
         {
-            _db = db;
-        }
-        public void Handle(ICollection<IDomainEvent> uncommittedEvents)
-        {
-            foreach (var uncommittedEvent in uncommittedEvents)
-            {
-                _db.Insert(uncommittedEvent, "Events");
-            }
-            
+            Db.Update(aggregate);
+            _uncommittedEventHandler.Handle(aggregate.UncommittedEvent);
         }
     }
 }

@@ -6,6 +6,6 @@ namespace Ackee.Domain.Model
     public interface IDomainEvent
     {
         Guid Id { get; }
-        DateTime PublishDateTime { get; }
+        DateTime OccurredOn { get; }
     }
 }

@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Ackee.Domain.Model;
 using Ackee.Domain.Model.TestUtility;
 using FluentAssertions;
 using LiteDB;
@@ -13,7 +12,6 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
     public class LiteDbRepositoryTest : LiteDbBaseClassTest, IDisposable
     {
         private readonly BookRepositoryFake _bookRepository;
-        private readonly AggregateRootFake _aggregate=  new AggregateRootFake(new IdFake(1));
         private Book _book;
 
         public LiteDbRepositoryTest()
@@ -40,17 +38,7 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
 
             insertedBook.Should().Be(book);
         }
-        [Fact]
-        public async Task If_aggregate_has_events_it_saves_in_UncommittedEvent_collection()
-        {
-            _book.DoSomethingAndPublishEvent();
-
-            await _bookRepository.Create(_book);
-
-            var ss= Db.Query<IDomainEvent>("Events").ToList();
-            
-            ss.Should().NotBeEmpty();
-        }
+       
 
         [Fact]
         public async Task should_remove_book_aggregate()
@@ -127,10 +115,6 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
             return book;
         }
 
-        public void Dispose()
-        {
-            Db.Dispose();
-            File.Delete(ConnectionString);
-        }
+       
     }
 }
