@@ -11,6 +11,10 @@
         {
             return new ErrorDetails(message, (errorCode + bcCode));
         }
+        public static ErrorDetails Build(string message, long errorCode)
+        {
+            return new ErrorDetails(message, errorCode);
+        }
         public string Message { get; set; }
         public long Code { get; set; }
     }
