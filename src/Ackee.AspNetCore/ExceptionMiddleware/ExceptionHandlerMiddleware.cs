@@ -40,18 +40,17 @@ namespace Ackee.AspNetCore.ExceptionMiddleware
                 await HandleDefaultException(httpContext);
         }
 
+        private async Task HandleBusinessException(HttpContext httpContext, AckeeException ackeeException)
+        {
+            var error = AckeeExceptionHandler.CreateErrorDetail(ackeeException, _bcCode);
+            await WriteToResponse(httpContext, error);
+        }
+
         private async Task HandleDefaultException(HttpContext httpContext)
         {
             var error = new ErrorDetails("unhandled exception", _bcCode);
             await WriteToResponse(httpContext, error);
         }
-
-        private async Task HandleBusinessException(HttpContext httpContext, AckeeException exception)
-        {
-            var error = ErrorDetails.Build(exception.Message, exception.Code, _bcCode);
-            await WriteToResponse(httpContext, error);
-        }
-
         private async Task HandleUnAuthorizeException(HttpContext httpContext, Exception exception)
         {
             var error = ErrorDetails.Build(exception.Message, 0, _bcCode);
