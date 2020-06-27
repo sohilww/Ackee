@@ -59,9 +59,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.Logger", "src\Ackee.L
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.Extensions", "src\Ackee.Extensions\Ackee.Extensions.csproj", "{B0CAFFFC-FB1D-494A-A1B8-03847AD11F0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.Specification", "src\Ackee.Specification\Ackee.Specification.csproj", "{10F437BE-7C5A-49B8-BC7E-9FAF49C5FDB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.Specification", "src\Ackee.Specification\Ackee.Specification.csproj", "{10F437BE-7C5A-49B8-BC7E-9FAF49C5FDB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.Specification.Test", "test\Ackee.Specification.Test\Ackee.Specification.Test.csproj", "{688EC5B2-9A4C-40FB-B29B-5C52C0617606}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ackee.Specification.Test", "test\Ackee.Specification.Test\Ackee.Specification.Test.csproj", "{688EC5B2-9A4C-40FB-B29B-5C52C0617606}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ackee.Events", "src\Ackee.Events\Ackee.Events.csproj", "{725E03F6-32F6-4BFA-ABF2-76F7A42E094E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -159,6 +161,10 @@ Global
 		{688EC5B2-9A4C-40FB-B29B-5C52C0617606}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{688EC5B2-9A4C-40FB-B29B-5C52C0617606}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{688EC5B2-9A4C-40FB-B29B-5C52C0617606}.Release|Any CPU.Build.0 = Release|Any CPU
+		{725E03F6-32F6-4BFA-ABF2-76F7A42E094E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{725E03F6-32F6-4BFA-ABF2-76F7A42E094E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{725E03F6-32F6-4BFA-ABF2-76F7A42E094E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{725E03F6-32F6-4BFA-ABF2-76F7A42E094E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -191,6 +197,7 @@ Global
 		{B0CAFFFC-FB1D-494A-A1B8-03847AD11F0A} = {BEFD1F79-4EDF-4694-91E6-CE3B9256E827}
 		{10F437BE-7C5A-49B8-BC7E-9FAF49C5FDB9} = {BEFD1F79-4EDF-4694-91E6-CE3B9256E827}
 		{688EC5B2-9A4C-40FB-B29B-5C52C0617606} = {69DF03DC-1388-47E5-8C57-8337BED8DE47}
+		{725E03F6-32F6-4BFA-ABF2-76F7A42E094E} = {BEFD1F79-4EDF-4694-91E6-CE3B9256E827}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C944CE8C-12A1-4ED1-89B5-65F6842EB3BC}

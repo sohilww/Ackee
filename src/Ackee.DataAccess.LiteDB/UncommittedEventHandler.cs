@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Ackee.Domain.Model;
+using Ackee.Events;
 using LiteDB;
 
 namespace Ackee.DataAccess.LiteDB
@@ -15,7 +16,8 @@ namespace Ackee.DataAccess.LiteDB
         {
             foreach (var uncommittedEvent in uncommittedEvents)
             {
-                _db.Insert(uncommittedEvent, "Events");
+                var @event= EventDataFactory.Create(uncommittedEvent);
+                _db.Insert(@event, "Events");
             }
             
         }

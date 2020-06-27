@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Ackee.Domain.Model;
 using Ackee.Domain.Model.TestUtility;
+using Ackee.Events;
 using FluentAssertions;
 using Xunit;
 
@@ -58,9 +58,9 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
             events.Should().NotBeEmpty();
         }
 
-        private List<IDomainEvent> GetEvents()
+        private List<EventData> GetEvents()
         {
-            return Db.Query<IDomainEvent>(_eventsCollectionName).ToList();
+            return Db.Query<EventData>(_eventsCollectionName).ToList();
         }
     }
 }

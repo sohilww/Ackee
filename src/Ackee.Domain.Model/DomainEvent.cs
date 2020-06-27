@@ -11,5 +11,6 @@ namespace Ackee.Domain.Model
             this.Id = Guid.NewGuid();
             this.OccurredOn = DateTime.Now;
         }
+
     }
 }
