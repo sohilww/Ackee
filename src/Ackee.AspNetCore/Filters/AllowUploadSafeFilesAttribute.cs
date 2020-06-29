@@ -8,11 +8,12 @@ using Microsoft.AspNetCore.Mvc.Filters;
 [AttributeUsage(AttributeTargets.Method)]
 public sealed class AllowUploadSafeFilesAttribute : ActionFilterAttribute
 {
-    public int SizeKb { get; set; }
-    public int SizeMB
+    public int LitimSizeKB { get; set; }
+
+    public int LimitSizeMB
     {
-        get { return (SizeKb / 1000); }
-        set { SizeKb = (1024 * value); }
+        get => (LitimSizeKB / 1024);
+        set => LitimSizeKB = (1024 * value);
     }
 
 
@@ -74,12 +75,12 @@ public sealed class AllowUploadSafeFilesAttribute : ActionFilterAttribute
     private void CheckSizeLimit(IFormFile postedFile)
     {
         if (DidSizeLimitSet())
-            if (postedFile.Length > (SizeKb * 1000))
-                throw new InvalidOperationException($"Too size {SizeKb.ToString()}");
+            if (postedFile.Length > (LitimSizeKB * 1024))
+                throw new InvalidOperationException($"Too  big file size {LitimSizeKB.ToString()}");
     }
     private bool DidSizeLimitSet()
     {
-        return SizeKb > 0;
+        return LitimSizeKB > 0;
     }
     private static void CheckExtensionOfFile(IFormFile postedFile)
     {
