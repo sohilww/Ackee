@@ -13,7 +13,7 @@ namespace Ackee.AspNetCore.Filters
             return canUpload(value.ToString());
         }
 
-        static readonly IList<string> InvalidCharecters = new List<string> {
+        static readonly IList<string> InvalidCharacters = new List<string> {
             "..", "//","@","~","^","&","*","cd ","<",">",":","\\","|","?",
             "con","prn","aux","nul","cm1","com2","com3","com4","com5","com6","com7",
             "com8","com9","lpt1","lpt2","lpt3","lpt4","lpt5","lpt6","lpt7","lpt8","lpt9"
@@ -46,7 +46,7 @@ namespace Ackee.AspNetCore.Filters
             return !ExtToFilter.Contains(ext) &&
                    !NameToFilter.Contains(name) &&
                    !NameToFilter.Contains(ext) &&
-                   !InvalidCharecters.Contains(name) &&
+                   !InvalidCharacters.Contains(name) &&
                    //for "file.asp;.header" files
                    ExtToFilter.All(item => !name.Contains(item));
         }
