@@ -1,23 +1,19 @@
-using System;
-using System.IO;
 using System.Threading.Tasks;
 using Ackee.Domain.Model.TestUtility;
 using FluentAssertions;
-using LiteDB;
 using Xunit;
 
 namespace Ackee.DataAccess.LiteDB.IntegrationTest
 {
-    public class LiteDbRepositoryTest : IDisposable
+    public class LiteDbRepositoryTest : LiteDbBaseClassTest
     {
         private readonly BookRepositoryFake _bookRepository;
-        private readonly LiteRepository _db;
-        private string _connectionString= Environment.CurrentDirectory+ "/lite.db";
+        private Book _book;
 
         public LiteDbRepositoryTest()
         {
-            _db = new LiteRepository(_connectionString);
-            _bookRepository = new BookRepositoryFake(_db);
+            _bookRepository = new BookRepositoryFake(Db);
+            _book = BookFactoryTest.Create();
         }
         [Fact]
         public async Task should_generate_new_id()
@@ -38,6 +34,7 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
 
             insertedBook.Should().Be(book);
         }
+       
 
         [Fact]
         public async Task should_remove_book_aggregate()
@@ -51,16 +48,7 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
             insertedBook.Deleted.Should().BeTrue();
         }
 
-        [Fact]
-        public async Task should_findAll_books()
-        {
-            await InsertTwoBooks();
-
-            var books = await _bookRepository.FindAll(a => true);
-
-            books.Should().HaveCount(2);
-        }
-
+        
         [Fact]
         public async Task should_find_book_with_name()
         {
@@ -114,10 +102,6 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
             return book;
         }
 
-        public void Dispose()
-        {
-            _db.Dispose();
-            File.Delete(_connectionString);
-        }
+       
     }
 }

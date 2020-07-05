@@ -4,12 +4,13 @@ namespace Ackee.Domain.Model
 {
     public abstract class DomainEvent : IDomainEvent
     {
-        public Guid EventId { get; protected set; }
-        public DateTime PublishDateTime { get; protected set; }
+        public Guid Id { get; protected set; }
+        public DateTime OccurredOn { get; protected set; }
         protected DomainEvent()
         {
-            this.EventId = Guid.NewGuid();
-            this.PublishDateTime = DateTime.Now;
+            this.Id = Guid.NewGuid();
+            this.OccurredOn = DateTime.Now;
         }
+
     }
 }
