@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using LiteDB;
 
 namespace Ackee.DataAccess.LiteDB.IntegrationTest
@@ -24,7 +23,9 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
         public void Dispose()
         {
             Db.Dispose();
-            File.Delete(Path);
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            //File.Delete(Path);
         }
     }
 }

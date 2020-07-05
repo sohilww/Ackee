@@ -1,15 +1,11 @@
-using System;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Ackee.Domain.Model.TestUtility;
 using FluentAssertions;
-using LiteDB;
 using Xunit;
 
 namespace Ackee.DataAccess.LiteDB.IntegrationTest
 {
-    public class LiteDbRepositoryTest : LiteDbBaseClassTest, IDisposable
+    public class LiteDbRepositoryTest : LiteDbBaseClassTest
     {
         private readonly BookRepositoryFake _bookRepository;
         private Book _book;
@@ -52,16 +48,7 @@ namespace Ackee.DataAccess.LiteDB.IntegrationTest
             insertedBook.Deleted.Should().BeTrue();
         }
 
-        [Fact]
-        public async Task should_findAll_books()
-        {
-            await InsertTwoBooks();
-
-            var books = await _bookRepository.FindAll(a => true);
-
-            books.Should().HaveCount(2);
-        }
-
+        
         [Fact]
         public async Task should_find_book_with_name()
         {
