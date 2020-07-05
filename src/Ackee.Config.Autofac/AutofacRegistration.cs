@@ -5,6 +5,7 @@ using Ackee.Application;
 using Ackee.AspNetCore;
 using Ackee.Config.Loader;
 using Ackee.Core;
+using Ackee.Domain.Model;
 using Ackee.Domain.Model.Repositories;
 using Autofac;
 
@@ -48,6 +49,15 @@ namespace Ackee.Config.Autofac
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
         }
+
+        public void RegisterDomainServices(Assembly assembly)
+        {
+            _builder.RegisterAssemblyTypes(assembly)
+                .Where(a => typeof(IDomainService).IsAssignableFrom(a))
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
+        }
+
         public void RegisterScoped<TImplementation, TService>()
         {
             _builder.RegisterType<TImplementation>()

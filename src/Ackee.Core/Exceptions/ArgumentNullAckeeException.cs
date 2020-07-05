@@ -1,9 +1,5 @@
 ﻿namespace Ackee.Core.Exceptions
 {
-    public interface IInternalException
-    {
-
-    }
     public class ArgumentNullAckeeException : AckeeException,IInternalException
     {
         public ArgumentNullAckeeException(string field="")

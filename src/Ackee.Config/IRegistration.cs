@@ -14,6 +14,8 @@ namespace Ackee.Config
 
         void RegisterRepositories(Assembly assembly);
 
+        void RegisterDomainServices(Assembly assembly);
+
         void RegisterScoped<TImplementation, TService>();
 
         void RegisterSingleton<TImplementation, TService>();
