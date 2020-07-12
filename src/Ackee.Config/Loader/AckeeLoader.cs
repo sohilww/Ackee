@@ -1,4 +1,6 @@
-﻿namespace Ackee.Config.Loader
+﻿using Ackee.Core;
+
+namespace Ackee.Config.Loader
 {
     public class AckeeLoader : IIocModuleBuilder
     {
@@ -22,6 +24,12 @@
         {
             _ackeeInstaller.AddIocModule(iocModule);
             _ackeeInstaller.AddModule(new AckeeModule());
+            return this;
+        }
+
+        public AckeeLoader RegisterBc(BcConfig config)
+        {
+            _ackeeInstaller.AddBc(config);
             return this;
         }
 

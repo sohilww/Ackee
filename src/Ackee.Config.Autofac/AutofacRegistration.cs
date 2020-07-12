@@ -80,6 +80,11 @@ namespace Ackee.Config.Autofac
             _builder.RegisterType<TImplementation>().As<TService>().SingleInstance();
         }
 
+        public void RegisterSingleton<TImplementation>(TImplementation implementation) where TImplementation: class
+        {
+            _builder.RegisterInstance(implementation).AsSelf().SingleInstance();
+        }
+
         public void RegisterInstanceAsScoped<TImplementation>(Func<IDependencyResolver,TImplementation> register,
             Action<TImplementation> releaseAction=null)
         {

@@ -1,6 +1,7 @@
 using System;
 using Ackee.Application;
 using Ackee.Application.Test.Utility;
+using Ackee.Config;
 using Ackee.Config.Autofac;
 using Ackee.Config.Loader;
 using Ackee.Core;
@@ -31,13 +32,29 @@ namespace Ackee.AutofacConfig.IntegrationTest
         }
 
         [Fact]
-        public void should_resolve_registred_commandHandlers()
+        public void should_resolve_registered_commandHandlers()
         {
             InstallAckee(_autofacBuilder);
 
             var commandHandler = ResolveCommandHandler();
 
             commandHandler.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void registerBc_return_code_of_bc()
+        {
+            InstallAckee(_autofacBuilder);
+
+            var config = ResolveBcConfig();
+
+            config.Code.Should().BeGreaterThan(1);
+            config.Name.Should().NotBeNullOrWhiteSpace();
+        }
+
+        private BcConfig ResolveBcConfig()
+        {
+            return _autofacBuilder.Build().Resolve<BcConfig>();
         }
 
         private ICommandHandler<TestCommand> ResolveCommandHandler()
@@ -50,6 +67,11 @@ namespace Ackee.AutofacConfig.IntegrationTest
             AckeeLoader.Create()
                 .RegisterIocModule(new AutofacAckeeModule(autofacBuilder))
                 .RegisterModule(new TestModule())
+                .RegisterBc(new BcConfig()
+                {
+                    Code = 1000,
+                    Name = "Ackee.Bc"
+                })
                 .Install();
         }
 

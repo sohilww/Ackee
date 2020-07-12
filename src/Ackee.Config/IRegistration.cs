@@ -19,7 +19,7 @@ namespace Ackee.Config
         void RegisterScoped<TImplementation, TService>();
 
         void RegisterSingleton<TImplementation, TService>();
-
+        void RegisterSingleton<TImplementation>(TImplementation implementation) where TImplementation : class;
         void RegisterDecorator<TDecorator, TService>() where TDecorator : TService;
         void RegisterDecorator(Type decorator, Type service);
 

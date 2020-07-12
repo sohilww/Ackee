@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
+using Ackee.Core;
 using Ackee.Core.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
@@ -12,11 +13,10 @@ namespace Ackee.AspNetCore.ExceptionMiddleware
         private readonly RequestDelegate _next;
         private readonly int _bcCode;
 
-        public ExceptionHandlerMiddleware(RequestDelegate next, int bcCode)
+        public ExceptionHandlerMiddleware(RequestDelegate next, BcConfig config)
         {
             _next = next;
-
-            _bcCode = bcCode;
+            _bcCode = config.Code;
         }
         public async Task Invoke(HttpContext httpContext)
         {
