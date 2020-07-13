@@ -39,12 +39,12 @@ namespace Ackee.DataAccess.LiteDB
 
         protected async Task<TAggregate> Find(Expression<Func<TAggregate, bool>> predicate)
         {
-            return GetAggregateDidNotDelete().Where(a => !a.Deleted).Where(predicate).FirstOrDefault();
+            return GetAggregateDidNotDelete().Where(predicate).FirstOrDefault();
         }
 
         protected async Task<List<TAggregate>> FindAll(Expression<Func<TAggregate, bool>> predicate)
         {
-            return GetAggregateDidNotDelete().Where(a => !a.Deleted).Where(predicate).ToList();
+            return GetAggregateDidNotDelete().Where(predicate).ToList();
         }
 
         protected ILiteQueryable<TAggregate> GetAggregateDidNotDelete()
