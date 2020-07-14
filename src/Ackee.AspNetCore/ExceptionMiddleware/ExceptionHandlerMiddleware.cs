@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Ackee.Core;
 using Ackee.Core.Exceptions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Data.OData;
 using Newtonsoft.Json;
 
 namespace Ackee.AspNetCore.ExceptionMiddleware
@@ -36,26 +37,34 @@ namespace Ackee.AspNetCore.ExceptionMiddleware
                 await HandleUnAuthorizeException(httpContext, exception);
             else if (exception is AckeeException ackeeException)
                 await HandleBusinessException(httpContext, ackeeException);
+            else if (exception is ODataException)
+                await HandleOdataException(httpContext, (ODataException) exception);
+
             else
                 await HandleDefaultException(httpContext);
-        }
-
-        private async Task HandleBusinessException(HttpContext httpContext, AckeeException ackeeException)
-        {
-            var error = AckeeExceptionHandler.CreateErrorDetail(ackeeException, _bcCode);
-            await WriteToResponse(httpContext, error);
-        }
-
-        private async Task HandleDefaultException(HttpContext httpContext)
-        {
-            var error = new ErrorDetails("unhandled exception", _bcCode);
-            await WriteToResponse(httpContext, error);
         }
         private async Task HandleUnAuthorizeException(HttpContext httpContext, Exception exception)
         {
             var error = ErrorDetails.Build(exception.Message, 0, _bcCode);
             await WriteToResponse(httpContext, error, HttpStatusCode.Forbidden);
         }
+        private async Task HandleBusinessException(HttpContext httpContext, AckeeException ackeeException)
+        {
+            var error = AckeeExceptionHandler.CreateErrorDetail(ackeeException, _bcCode);
+            await WriteToResponse(httpContext, error);
+        }
+        private async Task HandleOdataException(HttpContext httpContext, ODataException exception)
+        {
+            var error=new ErrorDetails(exception.Message,0);
+            await WriteToResponse(httpContext, error);
+        }
+        private async Task HandleDefaultException(HttpContext httpContext)
+        {
+            var error = new ErrorDetails("unhandled exception", _bcCode);
+            await WriteToResponse(httpContext, error);
+        }
+       
+
 
         private static async Task WriteToResponse(HttpContext httpContext, ErrorDetails error, HttpStatusCode statusCode = HttpStatusCode.InternalServerError)
         {
@@ -63,5 +72,6 @@ namespace Ackee.AspNetCore.ExceptionMiddleware
             httpContext.Response.ContentType = "application/json";
             await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(error));
         }
+        
     }
 }
