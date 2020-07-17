@@ -63,9 +63,6 @@ namespace Ackee.AspNetCore.ExceptionMiddleware
             var error = new ErrorDetails("unhandled exception", _bcCode);
             await WriteToResponse(httpContext, error);
         }
-       
-
-
         private static async Task WriteToResponse(HttpContext httpContext, ErrorDetails error, HttpStatusCode statusCode = HttpStatusCode.InternalServerError)
         {
             httpContext.Response.StatusCode = (int)statusCode;

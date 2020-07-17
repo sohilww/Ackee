@@ -14,7 +14,12 @@ namespace Ackee.Events
         public IDomainEvent DomainEvent { get; set; }
         public string Body { get; set; }
         public string BodyType { get; set; }
-        public bool Published { get; }
+        public bool Published { get; private set; }
+
+        public void Publish()
+        {
+            Published = true;
+        }
         
     }
 }
