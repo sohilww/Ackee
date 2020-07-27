@@ -29,7 +29,7 @@ namespace Ackee.AutofacConfig.IntegrationTest
 
             resolve.Should().BeOfType<TestService>();
 
-        }
+        } 
 
         [Fact]
         public void should_resolve_registered_commandHandlers()
