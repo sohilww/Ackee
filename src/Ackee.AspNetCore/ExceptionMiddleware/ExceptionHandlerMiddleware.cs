@@ -12,13 +12,14 @@ namespace Ackee.AspNetCore.ExceptionMiddleware
     public class ExceptionHandlerMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly int _bcCode;
+        private readonly BcConfig _config;
 
         public ExceptionHandlerMiddleware(RequestDelegate next, BcConfig config)
         {
             _next = next;
-            _bcCode = config.Code;
+            _config = config;
         }
+
         public async Task Invoke(HttpContext httpContext)
         {
             try
@@ -43,32 +44,37 @@ namespace Ackee.AspNetCore.ExceptionMiddleware
             else
                 await HandleDefaultException(httpContext);
         }
+
         private async Task HandleUnAuthorizeException(HttpContext httpContext, Exception exception)
         {
-            var error = ErrorDetails.Build(exception.Message, 0, _bcCode);
+            var error = ErrorDetails.Build(exception);
             await WriteToResponse(httpContext, error, HttpStatusCode.Forbidden);
         }
+
         private async Task HandleBusinessException(HttpContext httpContext, AckeeException ackeeException)
         {
-            var error = AckeeExceptionHandler.CreateErrorDetail(ackeeException, _bcCode);
+            var error = AckeeExceptionHandler.CreateErrorDetail(ackeeException, _config);
             await WriteToResponse(httpContext, error);
         }
+
         private async Task HandleOdataException(HttpContext httpContext, ODataException exception)
         {
-            var error=new ErrorDetails(exception.Message,0);
+            var error = new ErrorDetails(exception.Message, _config.Code);
             await WriteToResponse(httpContext, error);
         }
+
         private async Task HandleDefaultException(HttpContext httpContext)
         {
-            var error = new ErrorDetails("unhandled exception", _bcCode);
+            var error = new ErrorDetails("unhandled exception", _config.Code);
             await WriteToResponse(httpContext, error);
         }
-        private static async Task WriteToResponse(HttpContext httpContext, ErrorDetails error, HttpStatusCode statusCode = HttpStatusCode.InternalServerError)
+
+        private static async Task WriteToResponse(HttpContext httpContext, ErrorDetails error,
+            HttpStatusCode statusCode = HttpStatusCode.InternalServerError)
         {
-            httpContext.Response.StatusCode = (int)statusCode;
+            httpContext.Response.StatusCode = (int) statusCode;
             httpContext.Response.ContentType = "application/json";
             await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(error));
         }
-        
     }
 }

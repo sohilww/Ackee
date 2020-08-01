@@ -1,4 +1,5 @@
 ﻿using Ackee.Application;
+using Ackee.Core;
 
 namespace Ackee.Config
 {
@@ -8,6 +9,7 @@ namespace Ackee.Config
         {
             registration.RegisterScoped<CommandBus, ICommandBus>();
             registration.RegisterScoped<CommandHandlerFactory, ICommandHandlerFactory>();
+            registration.RegisterSingleton<ExceptionHandler, IExceptionHandler>();
         }
     }
 }
