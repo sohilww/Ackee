@@ -8,6 +8,7 @@ using Ackee.Core;
 using Ackee.Domain.Model;
 using Ackee.Domain.Model.Repositories;
 using Autofac;
+using Autofac.Extras.DynamicProxy;
 
 namespace Ackee.Config.Autofac
 {
@@ -31,6 +32,16 @@ namespace Ackee.Config.Autofac
             _builder
                 .RegisterAssemblyTypes(assembly)
                 .Where(a=>a.IsAssignableTo<IFacadeService>())
+                .AsImplementedInterfaces().InstancePerLifetimeScope();
+        }
+        public void RegisterFacadeServices(Assembly assembly,params Type[] interceptService)
+        {
+            _builder
+                .RegisterAssemblyTypes(assembly)
+                .Where(a => a.IsAssignableTo<IFacadeService>())
+                .EnableClassInterceptors()
+                .EnableInterfaceInterceptors()
+                .InterceptedBy(interceptService)
                 .AsImplementedInterfaces().InstancePerLifetimeScope();
         }
 
