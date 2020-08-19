@@ -10,6 +10,8 @@ namespace Ackee.Config
 
         void RegisterFacadeServices(Assembly assembly);
 
+        void RegisterFacadeServices(Assembly assembly, params Type[] interceptService);
+
         void RegisterCommandHandlers(Assembly assembly);
 
         void RegisterRepositories(Assembly assembly);
