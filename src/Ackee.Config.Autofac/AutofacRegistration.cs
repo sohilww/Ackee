@@ -39,7 +39,6 @@ namespace Ackee.Config.Autofac
             _builder
                 .RegisterAssemblyTypes(assembly)
                 .Where(a => a.IsAssignableTo<IFacadeService>())
-                .EnableClassInterceptors()
                 .EnableInterfaceInterceptors()
                 .InterceptedBy(interceptService)
                 .AsImplementedInterfaces().InstancePerLifetimeScope();
