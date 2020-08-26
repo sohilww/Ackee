@@ -10,7 +10,7 @@ namespace Ackee.Config.Loader
         {
             return new AckeeLoader();
         }
-        public AckeeLoader()
+        private AckeeLoader()
         {
             _ackeeInstaller = new AckeeInstaller();
         }
