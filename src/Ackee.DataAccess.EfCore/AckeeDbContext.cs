@@ -4,6 +4,10 @@ namespace Ackee.DataAccess.EfCore
 {
     public abstract class AckeeDbContext : DbContext, IAckeeSession
     {
+        protected AckeeDbContext()
+        {
+            
+        }
         protected AckeeDbContext(DbContextOptions options)
             : base(options)
         {
