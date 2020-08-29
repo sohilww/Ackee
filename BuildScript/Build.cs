@@ -36,13 +36,13 @@ class Build : NukeBuild
 
     [Parameter] readonly long BuildNumber = 0;
     [Parameter] string ArtifactsPath = RootDirectory + @"\artifacts\";
-    [Parameter] string ApiKey= string.Empty;
+    [Parameter] string ApiKey;
     [Parameter] string NugetSourceURL= "https://www.nuget.org";
 
     Target Clean => _ => _
         .Executes(() =>
         {
-            Logger.Log(LogLevel.Warning,"Hello World");
+            Logger.Log(LogLevel.Warning,ApiKey);
             DotNetClean(a =>
                 a.SetProject(Solution)
                     .SetConfiguration(Configuration));
