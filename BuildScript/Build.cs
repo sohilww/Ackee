@@ -26,8 +26,7 @@ class Build : NukeBuild
     ///   - JetBrains Rider            https://nuke.build/rider
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
-
-    public static int Main () => Execute<Build>(x => x.PushNuget);
+    public static int Main() => Execute<Build>(x => x.PushNuget);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
@@ -35,14 +34,14 @@ class Build : NukeBuild
     [Solution] readonly Solution Solution;
 
     [Parameter] readonly long BuildNumber = 0;
-    [Parameter] readonly string ArtifactsPath = RootDirectory + @"\artifacts\";
-    [Parameter] readonly string ApiKey="apikey";
-    [Parameter] readonly string NugetSourceURL= "https://www.nuget.org";
+    [Parameter] public readonly string ArtifactsPath = RootDirectory + @"\artifacts\";
+    [Parameter] public readonly string ApiKey;
+    [Parameter] readonly string NugetSourceURL = "https://www.nuget.org";
 
     Target Clean => _ => _
         .Executes(() =>
         {
-            Logger.Log(LogLevel.Warning,ApiKey);
+            Logger.Log(LogLevel.Warning, ApiKey);
             DotNetClean(a =>
                 a.SetProject(Solution)
                     .SetConfiguration(Configuration));
@@ -68,13 +67,12 @@ class Build : NukeBuild
             var group = Regex.Match(content, pattern).Groups;
             var version = group[group.Count - 1].Value;
             version = "<Version>" + version
-                          .Substring(0, 
-                              version.LastIndexOf(".", StringComparison.Ordinal)) 
+                                      .Substring(0,
+                                          version.LastIndexOf(".", StringComparison.Ordinal))
                                   + "." + BuildNumber + "</Version>";
 
             content = Regex.Replace(content, pattern, version);
-            File.WriteAllText(filePath,content,Encoding.UTF8);
-
+            File.WriteAllText(filePath, content, Encoding.UTF8);
         });
 
     Target Compile => _ => _
@@ -101,13 +99,12 @@ class Build : NukeBuild
                     .SetNoRestore(true)
                     .SetProjectFile(project)
                     .SetNoBuild(true));
-
             }
         });
-    
+
 
     Target PackNuget => _ => _
-        .Requires(()=>!string.IsNullOrEmpty(ArtifactsPath))
+        .Requires(() => !string.IsNullOrEmpty(ArtifactsPath))
         .DependsOn(RunTests)
         .Produces(ArtifactsPath)
         .Executes(() =>
@@ -123,16 +120,16 @@ class Build : NukeBuild
         });
 
     Target PushNuget => _ => _
-        .Requires(()=>!string.IsNullOrEmpty(ApiKey))
-        .Requires(()=>!string.IsNullOrEmpty(NugetSourceURL))
+        .Requires(() => !string.IsNullOrEmpty(ApiKey))
+        .Requires(() => !string.IsNullOrEmpty(NugetSourceURL))
         .DependsOn(PackNuget)
         .Executes(() =>
         {
-            var packages= Directory.EnumerateFiles(ArtifactsPath, "*.nupkg");
+            var packages = Directory.EnumerateFiles(ArtifactsPath, "*.nupkg");
 
             foreach (var package in packages)
             {
-                if(package.ToLower().Contains("testutility"))
+                if (package.ToLower().Contains("testutility"))
                     continue;
                 Logger.Log(LogLevel.Warning, package);
                 DotNetNuGetPush(a => a
@@ -140,8 +137,5 @@ class Build : NukeBuild
                     .SetApiKey(ApiKey)
                     .SetSource(NugetSourceURL));
             }
-         
         });
-
 }
- 
