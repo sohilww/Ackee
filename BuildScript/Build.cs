@@ -35,9 +35,9 @@ class Build : NukeBuild
     [Solution] readonly Solution Solution;
 
     [Parameter] readonly long BuildNumber = 0;
-    [Parameter] string ArtifactsPath = RootDirectory + @"\artifacts\";
-    [Parameter] string ApiKey="apikey";
-    [Parameter] string NugetSourceURL= "https://www.nuget.org";
+    [Parameter] readonly string ArtifactsPath = RootDirectory + @"\artifacts\";
+    [Parameter] readonly string ApiKey="apikey";
+    [Parameter] readonly string NugetSourceURL= "https://www.nuget.org";
 
     Target Clean => _ => _
         .Executes(() =>
