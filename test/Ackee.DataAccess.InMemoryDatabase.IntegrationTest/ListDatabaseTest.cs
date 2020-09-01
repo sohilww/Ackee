@@ -37,7 +37,7 @@ namespace Ackee.DataAccess.ListDatabase.IntegrationTest
             await _database.Remove(_aggregate);
 
             Func<Task> func= async ()=>await _database.Get(_id);
-            func.Should().Throw<Exception>();
+            await func.Should().ThrowAsync<Exception>();
         }
         private async Task CreateAggregate()
         {

@@ -62,7 +62,7 @@ class Build : NukeBuild
             version = "<Version>" + version
                                       .Substring(0,
                                           version.LastIndexOf(".", StringComparison.Ordinal))
-                                  + "." + BuildNumber + "</Version>";
+                                  + "." + BuildNumber + "-alpha</Version>";
 
             content = Regex.Replace(content, pattern, version);
             File.WriteAllText(filePath, content, Encoding.UTF8);
