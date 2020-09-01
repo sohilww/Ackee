@@ -1,7 +1,7 @@
 ﻿using Ackee.Config;
 using EventStore.ClientAPI;
 
-namespace Ackee.DataAccess.EventSource
+namespace Ackee.DataAccess.EventStore
 {
     public class EventSourceModule : IAckeeModule
     {

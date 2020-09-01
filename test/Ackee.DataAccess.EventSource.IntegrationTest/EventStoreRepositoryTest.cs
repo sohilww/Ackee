@@ -16,10 +16,9 @@ namespace Ackee.DataAccess.EventSource.IntegrationTest
 
         public EventStoreRepositoryTest()
         {
-            _connection = EventStoreConnection.Create(new Uri("tcp://127.0.0.1:2113"));
-            
-            _repository=new BookEventStoreTestRepository();
-            
+         
+
+            _repository = new BookEventStoreTestRepository();
         }
         // [Fact]
         // public void Create_Book_Aggregate()
@@ -34,19 +33,32 @@ namespace Ackee.DataAccess.EventSource.IntegrationTest
             var bookId = new BookId(10);
             var streamName = _repository.GetStreamName(bookId);
 
-            streamName.Should().Contain(bookId.ToString());
+            streamName.Should().Be("Book-10");
         }
 
         [Fact]
         public async Task Get_aggregate()
         {
-            var book=BookFactoryTest.Create();
-            var eventData= EventDataParser.ConvertToJson(book.UncommittedEvent.AsEnumerable());
-            _connection.ConnectAsync().Wait();
-            await _connection.AppendToStreamAsync(_repository.GetStreamName(book.Id), ExpectedVersion.Any, eventData);
+            var settings = ConnectionSettings
+                .Create()
+                .DisableServerCertificateValidation()
+                .UseDebugLogger()
+                .Build();
 
+            _connection = EventStoreConnection
+                .Create(settings,new Uri("tcp://admin:changeit@127.0.0.1:1113"));
 
+            var book = BookFactoryTest.Create();
+            book.DoSomethingAndPublishEvent();
+            var streamName = _repository.GetStreamName(book.Id);
             
+            
+            var eventData = EventDataParser.ConvertToJson(book.UncommittedEvent.AsEnumerable());
+            await _connection.ConnectAsync();
+            await _connection.AppendToStreamAsync(streamName, ExpectedVersion.Any, eventData);
+
+            var result= await _connection
+                .ReadStreamEventsForwardAsync(streamName,0,1,false);
         }
     }
 }
