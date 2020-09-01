@@ -36,5 +36,10 @@
         {
             return DbId;
         }
+
+        public override string ToString()
+        {
+            return GetIdValue().ToString();
+        }
     }
 }
