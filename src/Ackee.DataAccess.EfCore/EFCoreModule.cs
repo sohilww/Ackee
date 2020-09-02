@@ -1,4 +1,5 @@
-﻿using Ackee.Config;
+﻿using Ackee.Application;
+using Ackee.Config;
 
 namespace Ackee.DataAccess.EfCore
 {
@@ -17,6 +18,9 @@ namespace Ackee.DataAccess.EfCore
         {
             registration.RegisterInstanceAsScoped<IConnectionStringResolver>
                 (a => new ConnectionStringResolver(_configuration.ConnectionString));
+
+            registration.RegisterDecorator(typeof(EfCommandHandlerDecorator<>),
+               typeof(ICommandHandler<>));
         }
     }
 }
