@@ -165,3 +165,4 @@ NDependOut
 *.nupkg
 /artifacts/nuget.exe
 /sample/*
+/test/Ackee.DataAccess.EfCore.IntegrationTests/book.db

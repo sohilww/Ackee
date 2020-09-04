@@ -12,15 +12,15 @@ namespace Ackee.DataAccess.EfCore.IntegrationTests
 {
     public class EfCoreRepositoryTest : IDisposable
     {
-        private readonly EfCoreDbContext _db;
+        private readonly EfCoreTestDbContext _testDb;
         private readonly EfCoreTestRepository _repository;
         private readonly IDbContextTransaction _tran;
 
         public EfCoreRepositoryTest()
         {
-            _db = new EfCoreDbContext();
-            _tran = _db.Database.BeginTransaction(IsolationLevel.ReadCommitted);
-            _repository = new EfCoreTestRepository(_db);
+            _testDb = new EfCoreTestDbContext();
+            _tran = _testDb.Database.BeginTransaction(IsolationLevel.ReadCommitted);
+            _repository = new EfCoreTestRepository(_testDb);
         }
 
         [Fact]
@@ -30,9 +30,9 @@ namespace Ackee.DataAccess.EfCore.IntegrationTests
 
             await _repository.Create(book);
 
-            await _db.SaveChangesAsync();
+            await _testDb.SaveChangesAsync();
 
-            var first = _db.Books.First();
+            var first = _testDb.Books.First();
 
             first.Should().NotBeNull();
         }
@@ -68,6 +68,20 @@ namespace Ackee.DataAccess.EfCore.IntegrationTests
 
             oneBook.Should().Be(book);
         }
+        [Fact]
+        public async Task save_uncommitted_events()
+        {
+            var book = BookFactoryTest.Create();
+            book.DoSomethingAndPublishEvent();
+            
+            await _repository.Create(book);
+
+            await _testDb.SaveChangesAsync();
+
+            book.UncommittedEvent.Should().BeEmpty();
+            _testDb.Events.AsQueryable().ToList().Should().NotBeEmpty();
+        }
+
 
         private async Task InsertTwoBooks()
         {
@@ -80,14 +94,14 @@ namespace Ackee.DataAccess.EfCore.IntegrationTests
 
         private async Task InsertABook(Book book = null)
         {
-            await _db.Books.AddAsync(book);
-            await _db.SaveChangesAsync();
+            await _testDb.Books.AddAsync(book);
+            await _testDb.SaveChangesAsync();
         }
 
         public void Dispose()
         {
             _tran.Dispose();
-            _db.Dispose();
+            _testDb.Dispose();
         }
     }
-}
+};

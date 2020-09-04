@@ -5,13 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0-preview.8.20407.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Ackee.Config\Ackee.Config.csproj" />
     <ProjectReference Include="..\Ackee.DataAccess\Ackee.DataAccess.csproj" />
     <ProjectReference Include="..\Ackee.Domain.Model\Ackee.Domain.Model.csproj" />
+    <ProjectReference Include="..\Ackee.Events\Ackee.Events.csproj" />
   </ItemGroup>
 
 </Project>

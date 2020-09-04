@@ -4,24 +4,26 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ackee.DataAccess.EfCore.IntegrationTests
 {
-    public sealed class EfCoreDbContext : AckeeDbContext
+    public sealed class EfCoreTestDbContext : AckeeDbContext
     {
         private string _path;
 
-        public EfCoreDbContext():base()
+        public EfCoreTestDbContext() : base()
         {
             Database.Migrate();
         }
-        public EfCoreDbContext(DbContextOptions options) : base(options)
+
+        public EfCoreTestDbContext(DbContextOptions options) : base(options)
         {
         }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             _path = Environment.CurrentDirectory + "\\book.db";
             var randomDatabaseName = $@"Data Source={_path}";
             optionsBuilder.UseSqlite(randomDatabaseName);
-            
+
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -32,6 +34,7 @@ namespace Ackee.DataAccess.EfCore.IntegrationTests
             modelBuilder.Entity<Book>().Property(a => a.Id)
                 .HasConversion(a => a.DbId,
                     a => new BookId(a));
+
 
             base.OnModelCreating(modelBuilder);
         }

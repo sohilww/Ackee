@@ -1,4 +1,6 @@
-﻿using Ackee.Domain.Model;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Ackee.Domain.Model;
 using Newtonsoft.Json;
 
 namespace Ackee.Events
@@ -13,11 +15,13 @@ namespace Ackee.Events
                 Body = JsonConvert.SerializeObject(uncommittedEvent),
                 DomainEvent = uncommittedEvent,
                 Id = uncommittedEvent.Id,
-                
-                
             };
 
             return eventData;
+        }
+        public static List<EventData> Create(IEnumerable<IDomainEvent> uncommittedEvents)
+        {
+            return uncommittedEvents.Select(Create).ToList();
         }
     }
 }
