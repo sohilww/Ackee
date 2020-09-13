@@ -1,13 +1,13 @@
-using System;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.Execution;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DotNet;
+using System;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
@@ -29,7 +29,7 @@ class Build : NukeBuild
 
     [Parameter] readonly long BuildNumber = 0;
     [Parameter] public readonly string ArtifactsPath = RootDirectory + @"\artifacts\";
-    [Parameter] public readonly string ApiKey= "oy2ccybhfgn3ddlsvgsqpk2capncex3u7peacx2kmqxdle";
+    [Parameter] public readonly string ApiKey = "oy2hxoha2p5nxmhgbd6qtaoeqhbujspepmnizuk6em3fhm";
     [Parameter] readonly string NugetSourceURL = "https://www.nuget.org";
 
     Target Clean => _ => _
