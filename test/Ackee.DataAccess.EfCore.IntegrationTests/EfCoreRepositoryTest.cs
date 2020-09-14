@@ -82,6 +82,23 @@ namespace Ackee.DataAccess.EfCore.IntegrationTests
             _testDb.Events.AsQueryable().ToList().Should().NotBeEmpty();
         }
 
+        [Fact]
+        public async Task soft_delete()
+        {
+            var book = BookFactoryTest.Create();
+
+            await InsertABook(book);
+
+            await _repository.Remove(book);
+
+            await _testDb.SaveChangesAsync();
+
+            var readBook = _testDb.Books.FirstOrDefault(a => a.Id == book.Id);
+
+            readBook.Deleted.Should().BeTrue();
+
+        }
+
         private async Task InsertTwoBooks()
         {
             for (int i = 0; i < 2; i++)

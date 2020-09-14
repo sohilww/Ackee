@@ -17,12 +17,14 @@ namespace Ackee.DataAccess.LiteDB
         private readonly IEventPublisher _eventPublisher;
         readonly UncommittedEventHandler _uncommittedEventHandler;
         public abstract Task<TKey> GetNextId();
+
         protected LiteDbRepository(LiteRepository db, IEventPublisher eventPublisher)
         {
             Db = db;
             _eventPublisher = eventPublisher;
             _uncommittedEventHandler = new UncommittedEventHandler(Db);
         }
+
         public async Task Create(TAggregate aggregate)
         {
             Db.Insert(aggregate);
@@ -42,7 +44,6 @@ namespace Ackee.DataAccess.LiteDB
             SetPublisher(aggregate);
             return aggregate;
         }
-
 
 
         protected async Task<TAggregate> Find(Expression<Func<TAggregate, bool>> predicate)
@@ -76,7 +77,7 @@ namespace Ackee.DataAccess.LiteDB
 
         private void SetPublisher(TAggregate aggregate)
         {
-            aggregate.SetPublisher(_eventPublisher);
+            aggregate?.SetPublisher(_eventPublisher);
         }
     }
 }

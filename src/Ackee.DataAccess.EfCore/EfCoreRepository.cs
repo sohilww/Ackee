@@ -32,7 +32,7 @@ namespace Ackee.DataAccess.EfCore
 
         public async Task Remove(TAggregate aggregate)
         {
-            _dbContext.Remove(aggregate);
+            aggregate.Delete();
         }
         public async Task<TAggregate> Get(TKey key)
         {
@@ -58,14 +58,14 @@ namespace Ackee.DataAccess.EfCore
 
         }
 
-        private void SetPublisher(TAggregate a)
-        {
-            a.SetPublisher(_eventPublisher);
-        }
-
         protected IQueryable<TAggregate> GetAggregateDidNotDelete()
         {
             return _dbContext.Set<TAggregate>().Where(a => !a.Deleted);
+        }
+
+        private void SetPublisher(TAggregate aggregate)
+        {
+            aggregate?.SetPublisher(_eventPublisher);
         }
     }
 }
