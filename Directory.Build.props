@@ -1,6 +1,6 @@
 ﻿<Project>
   <PropertyGroup>
-    <Version>2.0.8-alpha</Version>
+    <Version>2.0.9-alpha</Version>
     <FileVersion>2.0.6-alpha</FileVersion>
     <Product>Ackee Framework</Product>
     <Company></Company>
