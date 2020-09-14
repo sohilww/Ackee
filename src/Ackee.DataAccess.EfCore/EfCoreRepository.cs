@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Ackee.Domain.Model;
+using Ackee.Domain.Model.EventManager;
+using Ackee.Domain.Model.Repositories;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Ackee.Domain.Model;
-using Ackee.Domain.Model.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace Ackee.DataAccess.EfCore
 {
@@ -13,11 +14,13 @@ namespace Ackee.DataAccess.EfCore
         where TKey : Id
         where TAggregate : AggregateRoot<TKey>
     {
-        private readonly AckeeDbContext _dbContext;
+        protected readonly AckeeDbContext _dbContext;
+        private readonly IEventPublisher _eventPublisher;
 
-        protected EfCoreRepository(AckeeDbContext dbContext)
+        protected EfCoreRepository(AckeeDbContext dbContext, IEventPublisher eventPublisher)
         {
             _dbContext = dbContext;
+            _eventPublisher = eventPublisher;
         }
 
         public abstract Task<TKey> GetNextId();
@@ -33,17 +36,33 @@ namespace Ackee.DataAccess.EfCore
         }
         public async Task<TAggregate> Get(TKey key)
         {
-            return await _dbContext.Set<TAggregate>().FirstOrDefaultAsync(a => a.Id == key);
+            var aggregate = await _dbContext.Set<TAggregate>().FirstOrDefaultAsync(a => a.Id == key);
+
+            SetPublisher(aggregate);
+            return aggregate;
         }
         protected async Task<TAggregate> Find(Expression<Func<TAggregate, bool>> predicate)
         {
-            return await GetAggregateDidNotDelete().FirstOrDefaultAsync(predicate);
+            var aggregate = await GetAggregateDidNotDelete().FirstOrDefaultAsync(predicate);
+
+            SetPublisher(aggregate);
+            return aggregate;
         }
 
         protected async Task<List<TAggregate>> FindAll(Expression<Func<TAggregate, bool>> predicate)
         {
-            return await GetAggregateDidNotDelete().Where(predicate).ToListAsync();
+            var aggregates = await GetAggregateDidNotDelete().Where(predicate).ToListAsync();
+
+            aggregates.ForEach(SetPublisher);
+            return aggregates;
+
         }
+
+        private void SetPublisher(TAggregate a)
+        {
+            a.SetPublisher(_eventPublisher);
+        }
+
         protected IQueryable<TAggregate> GetAggregateDidNotDelete()
         {
             return _dbContext.Set<TAggregate>().Where(a => !a.Deleted);

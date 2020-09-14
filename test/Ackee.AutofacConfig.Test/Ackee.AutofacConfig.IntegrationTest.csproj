@@ -25,6 +25,7 @@
     <ProjectReference Include="..\..\src\Ackee.Config.Autofac\Ackee.Config.Autofac.csproj" />
     <ProjectReference Include="..\..\src\Ackee.Config\Ackee.Config.csproj" />
     <ProjectReference Include="..\Ackee.Application.Test\Ackee.Application.Test.csproj" />
+    <ProjectReference Include="..\Ackee.Domain.Model.Utility\Ackee.Domain.Model.TestUtility.csproj" />
   </ItemGroup>
 
 </Project>

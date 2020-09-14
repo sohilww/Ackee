@@ -1,7 +1,7 @@
 ﻿<Project>
   <PropertyGroup>
-    <Version>2.0.0-alpha</Version>
-    <FileVersion>2.0.2-alpha</FileVersion>
+    <Version>2.0.8-alpha</Version>
+    <FileVersion>2.0.6-alpha</FileVersion>
     <Product>Ackee Framework</Product>
     <Company></Company>
     <Copyright>Copyright © 2019 - 2020, Iran - Soheil Karami</Copyright>

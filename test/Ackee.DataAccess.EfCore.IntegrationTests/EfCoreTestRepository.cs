@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Ackee.Domain.Model.TestUtility;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Ackee.Domain.Model.TestUtility;
 
 namespace Ackee.DataAccess.EfCore.IntegrationTests
 {
     public class EfCoreTestRepository : EfCoreRepository<Book, BookId>
     {
-        public EfCoreTestRepository(AckeeDbContext dbContext) : base(dbContext)
+        public EfCoreTestRepository(AckeeDbContext dbContext) : base(dbContext, new EventPublisherFake())
         {
         }
         public override Task<BookId> GetNextId()
@@ -20,7 +20,7 @@ namespace Ackee.DataAccess.EfCore.IntegrationTests
         {
             return await FindAll(TrueExpression());
         }
-        
+
         public async Task<Book> Find()
         {
             return await Find(TrueExpression());

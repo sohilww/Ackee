@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace Ackee.Domain.Model.TestUtility
+﻿namespace Ackee.Domain.Model.TestUtility
 {
     public class AggregateRootFake : AggregateRoot<IdFake>
     {
-        public AggregateRootFake(IdFake id) : base(id)
+        public AggregateRootFake(IdFake id) : base(id, new EventPublisherFake())
         {
         }
 

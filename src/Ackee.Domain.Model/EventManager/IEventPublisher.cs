@@ -1,4 +1,4 @@
-﻿namespace Ackee.Domain.Model
+﻿namespace Ackee.Domain.Model.EventManager
 {
     public interface IEventPublisher
     {

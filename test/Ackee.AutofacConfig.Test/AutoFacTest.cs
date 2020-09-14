@@ -1,17 +1,17 @@
-using System;
 using Ackee.Application;
 using Ackee.Application.Test.Utility;
-using Ackee.Config;
 using Ackee.Config.Autofac;
 using Ackee.Config.Loader;
 using Ackee.Core;
+using Ackee.Domain.Model.EventManager;
 using Autofac;
 using FluentAssertions;
+using System;
 using Xunit;
 
 namespace Ackee.AutofacConfig.IntegrationTest
 {
-    public class AutoFacTest :IDisposable
+    public class AutoFacTest : IDisposable
     {
         private readonly ContainerBuilder _autofacBuilder;
 
@@ -29,7 +29,7 @@ namespace Ackee.AutofacConfig.IntegrationTest
 
             resolve.Should().BeOfType<TestService>();
 
-        } 
+        }
 
         [Fact]
         public void should_resolve_registered_commandHandlers()
@@ -50,6 +50,19 @@ namespace Ackee.AutofacConfig.IntegrationTest
 
             config.Code.Should().BeGreaterThan(1);
             config.Name.Should().NotBeNullOrWhiteSpace();
+        }
+
+        [Fact]
+        public void EventSubscriber_and_eventPublisher_is_same_in_a_same_scope()
+        {
+            InstallAckee(_autofacBuilder);
+
+            var resolver = _autofacBuilder.Build();
+
+            var subscriber = resolver.Resolve<IEventSubscriber>();
+            var publisher = resolver.Resolve<IEventPublisher>();
+
+            subscriber.Should().Be(publisher);
         }
 
         private BcConfig ResolveBcConfig()
@@ -77,8 +90,8 @@ namespace Ackee.AutofacConfig.IntegrationTest
 
         public void Dispose()
         {
-            
+
         }
     }
-    
+
 }

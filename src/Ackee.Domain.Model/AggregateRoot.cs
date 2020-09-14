@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Ackee.Domain.Model.EventManager;
+using System.Collections.Generic;
 
 namespace Ackee.Domain.Model
 {
@@ -6,9 +7,10 @@ namespace Ackee.Domain.Model
         IAggregateRoot where TKey : Id
     {
         private IEventPublisher _eventPublisher;
-        protected AggregateRoot(TKey id) : base(id)
+        protected AggregateRoot(TKey id, IEventPublisher eventPublisher) : base(id)
         {
-            UncommittedEvent=new List<IDomainEvent>();
+            UncommittedEvent = new List<IDomainEvent>();
+            _eventPublisher = eventPublisher;
         }
 
         protected AggregateRoot() : base()
@@ -19,10 +21,15 @@ namespace Ackee.Domain.Model
 
         public void Publish<TEvent>(TEvent @event) where TEvent : IDomainEvent
         {
-            //_eventPublisher.Publish(@event);
+            _eventPublisher.Publish(@event);
             UncommittedEvent.Add(@event);
         }
 
         public ICollection<IDomainEvent> UncommittedEvent { get; }
+
+        public void SetPublisher(IEventPublisher eventPublisher)
+        {
+            _eventPublisher = eventPublisher;
+        }
     }
 }

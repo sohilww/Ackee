@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ackee.Application\Ackee.Application.csproj" />
+    <ProjectReference Include="..\Ackee.Domain.Model\Ackee.Domain.Model.csproj" />
   </ItemGroup>
 
 </Project>

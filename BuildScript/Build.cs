@@ -29,7 +29,7 @@ class Build : NukeBuild
 
     [Parameter] readonly long BuildNumber = 0;
     [Parameter] public readonly string ArtifactsPath = RootDirectory + @"\artifacts\";
-    [Parameter] public readonly string ApiKey = "oy2hxoha2p5nxmhgbd6qtaoeqhbujspepmnizuk6em3fhm";
+    [Parameter] public readonly string ApiKey = "oy2eekbdfusnewk2vtwargzqpt6pidxevafkuema5jh7j4";
     [Parameter] readonly string NugetSourceURL = "https://www.nuget.org";
 
     Target Clean => _ => _

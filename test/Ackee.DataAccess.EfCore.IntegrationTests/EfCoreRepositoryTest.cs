@@ -1,11 +1,11 @@
-﻿using System;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using Ackee.Domain.Model.TestUtility;
+﻿using Ackee.Domain.Model.TestUtility;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using System;
+using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Ackee.DataAccess.EfCore.IntegrationTests
@@ -73,7 +73,7 @@ namespace Ackee.DataAccess.EfCore.IntegrationTests
         {
             var book = BookFactoryTest.Create();
             book.DoSomethingAndPublishEvent();
-            
+
             await _repository.Create(book);
 
             await _testDb.SaveChangesAsync();
@@ -81,7 +81,6 @@ namespace Ackee.DataAccess.EfCore.IntegrationTests
             book.UncommittedEvent.Should().BeEmpty();
             _testDb.Events.AsQueryable().ToList().Should().NotBeEmpty();
         }
-
 
         private async Task InsertTwoBooks()
         {

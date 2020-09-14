@@ -1,15 +1,15 @@
+using Ackee.Domain.Model.TestUtility;
+using LiteDB;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Ackee.Domain.Model.TestUtility;
-using LiteDB;
 
 namespace Ackee.DataAccess.LiteDB.IntegrationTest
 {
     public class BookRepositoryFake : LiteDbRepository<Book, BookId>
     {
-        public BookRepositoryFake(LiteRepository db) : base(db)
+        public BookRepositoryFake(LiteRepository db) : base(db, new EventPublisherFake())
         {
         }
         public async override Task<BookId> GetNextId()

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Ackee.Domain.Model;
+using Ackee.Domain.Model.EventManager;
+using Ackee.Domain.Model.Repositories;
+using LiteDB;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Ackee.Domain.Model;
-using Ackee.Domain.Model.Repositories;
-using LiteDB;
 
 namespace Ackee.DataAccess.LiteDB
 {
@@ -13,12 +14,14 @@ namespace Ackee.DataAccess.LiteDB
         where TAggregate : AggregateRoot<TKey>
     {
         protected readonly LiteRepository Db;
+        private readonly IEventPublisher _eventPublisher;
         readonly UncommittedEventHandler _uncommittedEventHandler;
         public abstract Task<TKey> GetNextId();
-        protected LiteDbRepository(LiteRepository db)
+        protected LiteDbRepository(LiteRepository db, IEventPublisher eventPublisher)
         {
             Db = db;
-            _uncommittedEventHandler= new UncommittedEventHandler(Db);
+            _eventPublisher = eventPublisher;
+            _uncommittedEventHandler = new UncommittedEventHandler(Db);
         }
         public async Task Create(TAggregate aggregate)
         {
@@ -34,17 +37,30 @@ namespace Ackee.DataAccess.LiteDB
 
         public async Task<TAggregate> Get(TKey key)
         {
-            return Db.FirstOrDefault<TAggregate>(a => a.Id == key);
+            var aggregate = Db.FirstOrDefault<TAggregate>(a => a.Id == key);
+
+            SetPublisher(aggregate);
+            return aggregate;
         }
+
+
 
         protected async Task<TAggregate> Find(Expression<Func<TAggregate, bool>> predicate)
         {
-            return GetAggregateDidNotDelete().Where(predicate).FirstOrDefault();
+            var aggregate = GetAggregateDidNotDelete().Where(predicate).FirstOrDefault();
+
+            SetPublisher(aggregate);
+
+            return aggregate;
         }
 
         protected async Task<List<TAggregate>> FindAll(Expression<Func<TAggregate, bool>> predicate)
         {
-            return GetAggregateDidNotDelete().Where(predicate).ToList();
+            var aggregates = GetAggregateDidNotDelete().Where(predicate).ToList();
+
+            aggregates.ForEach(SetPublisher);
+
+            return aggregates;
         }
 
         protected ILiteQueryable<TAggregate> GetAggregateDidNotDelete()
@@ -56,6 +72,11 @@ namespace Ackee.DataAccess.LiteDB
         {
             Db.Update(aggregate);
             _uncommittedEventHandler.Handle(aggregate.UncommittedEvent);
+        }
+
+        private void SetPublisher(TAggregate aggregate)
+        {
+            aggregate.SetPublisher(_eventPublisher);
         }
     }
 }
